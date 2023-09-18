@@ -1,12 +1,19 @@
 from flask import Flask
 from flask import request
 
-app = Flask(__name__)
+api = Flask(__name__)
 
-@app.route("/")
+@api.route("/")
 def hello_world():
   return "<p>Hello, World!</p>"
 
-# @app.route("/graph")
-# def get_graph():
-#   if 
+# view funcs in flask default to GET
+@api.route('/data')
+def data():
+  # flask will change the dict to JSON automagically
+  response_body = {
+    "fname" : "Thomas",
+    "lname" : "Jeffersonius"
+  }
+
+  return response_body
