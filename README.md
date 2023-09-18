@@ -9,6 +9,11 @@ This project aims to show knowledge of interfaces and sorting algorithms
 * Flask API (not yet implemented)
 * PyGame
 
+# Installation
+* clone this repository
+* navigate to the top level directory in a command line interface
+* run `.venv\Scripts\activate`
+
 # Thanks
 * Tech with Tim (youtube) for base functionality
 * Mike C for the guidance and experience
