@@ -45,6 +45,7 @@ def generate_starting_list(n, min, max):
   for _ in range(n):
     value = random.randint(min, max)
     list.append(value)
+    print("appended: ", value)
   return list
 
 def draw(draw_info):
@@ -64,6 +65,7 @@ def draw_list(draw_info):
 
     color = draw_info.gradients[i % 3]
 
+    # this is a little goofy - works perfectly 1/3 of time
     pygame.draw.rect(draw_info.window, color, (x, y, draw_info.block_width, draw_info.height))
   
 
@@ -75,8 +77,7 @@ def main():
   min = 0
   max = 100
   list =  generate_starting_list(n, min, max)
-  draw_info = DrawInformation(800, 600, list)
-  # print("draw_info", draw_info)
+  draw_info = DrawInformation(1024, 768, list)
 
   # pygame needs a constant loop to handle game events/renders
   while run:
