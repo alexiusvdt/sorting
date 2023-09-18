@@ -18,8 +18,9 @@ This project aims to show knowledge of interfaces and sorting algorithms
 * Tech with Tim (youtube) for base functionality
 * Mike C for the guidance and experience
 
-# Bugs
-* graphs sometimes generate bars from top to bottom like the y is inverted...maybe have to floor() it or somehow prevent negatives?
+# Bugs / issues
+* graphs sometimes generate bars from top to bottom like the yaxis is inverted...maybe have to floor() it or somehow prevent negatives?
+* venv activation restricted on windows for some reason. setting user policies not working, will implement later
 
 # License
 MIT goes here
