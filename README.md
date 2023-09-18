@@ -13,5 +13,8 @@ This project aims to show knowledge of interfaces and sorting algorithms
 * Tech with Tim (youtube)
 * Mike C for the guidance and experience
 
+# Bugs
+* graphs sometimes generate bars from top to bottom like the y is inverted...maybe have to floor() it or somehow prevent negatives?
+
 # License
 MIT goes here

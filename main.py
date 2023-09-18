@@ -89,6 +89,11 @@ def main():
     for event in pygame.event.get():
       if event.type == pygame.QUIT:
         run = False
+      if event.type != pygame.KEYDOWN:
+        continue
+      if event.key == pygame.K_r:
+        list =  generate_starting_list(n, min, max)
+        draw_info.set_list(list)
 
   pygame.quit()
 
