@@ -10,7 +10,14 @@ class DrawInformation:
   green = 0, 255, 0
   red = 255, 0,0
   gray = 128, 128, 128
+  med_gray = 160,160,160
+  drk_gray = 192,192,192
   backgr_color = white
+  gradients = [
+    gray,
+    med_gray,
+    drk_gray
+  ]
   side_padding = 100
   top_padding = 150
 
@@ -47,7 +54,17 @@ def draw(draw_info):
 
 def draw_list(draw_info):
   # determine xy of each bar & adjust color shades
-  pass
+  list = draw_info.list
+  
+  for i, val in enumerate(list):
+    # rectangles draw from topleft to downright in py
+    x = draw_info.start_x + i * draw_info.block_width
+    y = draw_info.height - (val * draw_info.min) * draw_info.block_height
+
+    color = draw_info.gradients[i % 3]
+
+    pygame.draw.rect(draw_info.window, color, (x, y, draw_info.block_width, draw_info.height))
+  
 
 def main():
   run = True
