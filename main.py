@@ -113,6 +113,27 @@ def bubble_sort(draw_info, ascending=True):
       
   return list
 
+def insertion_sort(draw_info, ascending=True):
+  list = draw_info.list
+
+  for i in range(1, len(list)):
+    current = list[i]
+
+    while True:
+      ascending_sort = i > 0 and list[i - 1] > current and ascending
+      descending_sort = i > 0 and list[i - 1] < current and not ascending
+
+      if not ascending_sort and not descending_sort:
+        break
+      
+      list[i] = list[i-1]
+      i = i - 1
+      list[i] = current
+      draw_list(draw_info, {i - 1: draw_info.green, i: draw_info.red}, True)
+      yield True
+  
+  return list
+
 
 def main():
   run = True
@@ -136,12 +157,11 @@ def main():
   # next(g) -> 1
   # next(g) -> 2
   # next(g) -> .StopIterationException raised because there's nothing left
+  # take in the same args, always use yield for further algos
+  # leave these in as defaults
   sorting_algo_generator = None
-  # name of generator func
   sorting_algorithm = bubble_sort
   sorting_algo_name = "Bubble Sort"
-  
-
   # pygame needs a constant loop to handle game events/renders
   while run:
     # max loops/sec. bigger number = faster
@@ -174,6 +194,12 @@ def main():
         ascending = True
       elif event.key == pygame.K_d and not sorting:
         ascending = False
+      elif event.key == pygame.K_i and not sorting:
+        sorting_algorithm = insertion_sort
+        sorting_algo_name = "Insertion Sort"
+      elif event.key == pygame.K_b and not sorting:
+        sorting_algorithm = bubble_sort
+        sorting_algo_name = "Bubble Sort"
 
   pygame.quit()
 
