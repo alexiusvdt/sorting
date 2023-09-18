@@ -4,7 +4,7 @@ import json
 
 import sorts.sort
 import sorts.bubble_sort
-
+# do aliasing on these so you dont have to type out the full thing
 
 api = Flask(__name__)
 
@@ -26,10 +26,12 @@ def hello_world():
 
 @api.route('/sort')
 def get_sort_obj():
-  if request.sort_type == "bubble":
-    bubble = sorts.bubble_sort.BubbleSort()
+  func = request.args.get('type')
+  list = [10,8,84,1,55,26,83,9,18,4]
+  if func == "bubble":
+    bubble = sorts.bubble_sort.BubbleSort(func, list)
 
-    return jsonify(bubble)
+    return json.dumps(bubble.__dict__)
   else:
     response_body = {
       "you": "goofed"

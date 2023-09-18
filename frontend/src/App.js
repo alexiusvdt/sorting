@@ -14,7 +14,7 @@ function App() {
       method: "GET",
       url:"/sort",
       params: {
-        "sort_type": "bubble"
+        "type": "bubble"
       }
     })
     .then((response) => {

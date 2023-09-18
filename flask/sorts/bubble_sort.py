@@ -2,6 +2,8 @@ from .sort import Sort
 
 class BubbleSort(Sort):
     """Class that represents a BubbleSort implementation."""
+    # init and sort() are inherited from Sort
+    # we redefine _sort()
 
     def _sort(self, items):
         size = len(items)
