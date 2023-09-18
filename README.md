@@ -1,5 +1,5 @@
 ## Sorting Algorithms
-This project aims to show knowledge of interfaces and sorting algorithms
+This project aims to show knowledge of interfaces and sorting algorithms & is a work in progress
 
 # Goals
   * users can view various sorting algorithms at work
