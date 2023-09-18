@@ -12,7 +12,8 @@ This project aims to show knowledge of interfaces and sorting algorithms
 # Installation
 * clone this repository
 * navigate to the top level directory in a command line interface
-* run `.venv\Scripts\activate`
+* run `pip install -r requirements.txt` to install required packages
+* run the main.py file to access the sorting display
 
 # Thanks
 * Tech with Tim (youtube) for base functionality
