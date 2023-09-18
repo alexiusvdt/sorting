@@ -14,7 +14,8 @@ This project aims to show knowledge of interfaces and sorting algorithms
 * clone this repository
 * navigate to the `flask` directory in a command line interface
 * run `.\env\Scripts\activate` to activate the virtual environment
-* run flask with `npm run start-flask` to start in dev mode
+* cd into the `flask` directory
+* run flask with `flask run` to start in dev mode
 * in a second terminal window, navigate to `frontend` directory
 * run the react frontend with `npm run start`
 
