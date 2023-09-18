@@ -29,4 +29,34 @@ class DrawInformation:
     self.max_val = max(list)
     self.block_width = round((self.width - self.side_padding) / len(list))
     self.block_height = round((self.height - self.top_padding) / (self.max_val - self.min_val))
+    # top left is 0,0 in pygame
     self.start_x = self.side_padding // 2
+
+def generate_starting_list(n, min, max):
+  list = []
+
+  for _ in range(n):
+    value = random.randint(min, max)
+    list.append(value)
+  return list
+
+def main():
+  run = True
+  clock = pygame.time.Clock()
+  # pygame needs a constant loop to handle game events/renders
+  while run:
+    # max loops/sec
+    clock.tick(60)
+    pygame.display.update()
+
+    # all events since last loop
+    for event in pygame.event.get():
+      if event == pygame.QUIT:
+        run = False
+
+  pygame.quit()
+
+# if running this module directly
+# this won't if module imported
+if __name__ == "__main__":
+  main()
