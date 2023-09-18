@@ -5,19 +5,22 @@ import './App.css';
 
 function App() {
 
-  const [nameData, setNameData] = useState(null)
-  const [sortData, getSortData] = useState(null)
+  // const [nameData, setNameData] = useState(null)
+  const [bubbleData, setSortData] = useState(null)
 
-  function getSortData() {
+  function getBubbleData() {
+    console.log('starting fetch')
     axios({
       method: "GET",
       url:"/sort",
-      type: "bubble",
+      params: {
+        "sort_type": "bubble"
+      }
     })
     .then((response) => {
       const res = response.data
-      setNameData(({
-        sortObj: res.sort_obj}))
+      setSortData(({
+        sortObj: res}))
     }).catch((error) => {
       if (error.response) {
         console.log(error.response)
@@ -27,23 +30,23 @@ function App() {
     })}
 
   // example GET request
-  function getData() {
-    axios({
-      method: "GET",
-      url:"/data",
-    })
-    .then((response) => {
-      const res = response.data
-      setNameData(({
-        first_name: res.fname,
-        last_name: res.lname}))
-    }).catch((error) => {
-      if (error.response) {
-        console.log(error.response)
-        console.log(error.response.status)
-        console.log(error.response.headers)
-        }
-    })}
+  // function getData() {
+  //   axios({
+  //     method: "GET",
+  //     url:"/data",
+  //   })
+  //   .then((response) => {
+  //     const res = response.data
+  //     setNameData(({
+  //       first_name: res.fname,
+  //       last_name: res.lname}))
+  //   }).catch((error) => {
+  //     if (error.response) {
+  //       console.log(error.response)
+  //       console.log(error.response.status)
+  //       console.log(error.response.headers)
+  //       }
+  //   })}
 
 
   return (
@@ -62,17 +65,17 @@ function App() {
           Learn React
         </a>
 
-        <p>request a sort: </p><button onClick={getSortData}>Click me</button>
-        {sortData && <div>
-              <p>here's the sort object!: {sortData.sortObj}</p>
+        <p>request a sort: </p><button onClick={getBubbleData}>Click me</button>
+        {bubbleData && <div>
+              <p>here's the sort object!: {bubbleData.sortObj}</p>
         </div>}
 
-        <p>To get your name info: </p><button onClick={getData}>Click me</button>
+        {/* <p>To get your name info: </p><button onClick={getData}>Click me</button>
         {nameData && <div>
               <p>first name: {nameData.first_name}</p>
               <p>last: {nameData.last_name}</p>
             </div>
-        }
+        } */}
 
       </header>
     </div>

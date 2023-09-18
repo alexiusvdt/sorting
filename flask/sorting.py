@@ -44,15 +44,16 @@ class DrawInformation:
     self.block_height = math.floor((self.height - self.top_padding) / (self.max_val - self.min_val))
     self.start_x = self.side_padding // 2
 
-def generate_starting_list(n, min, max):
-  """populate our list with n values between min and max"""
-  list = []
+# moved to sort ABC
+# def generate_starting_list(n, min, max):
+#   """populate our list with n values between min and max"""
+#   list = []
 
-  for _ in range(n):
-    value = random.randint(min, max)
-    list.append(value)
-    # print("appended: ", value)
-  return list
+#   for _ in range(n):
+#     value = random.randint(min, max)
+#     list.append(value)
+#     # print("appended: ", value)
+#   return list
 
 def draw(draw_info, sorting_algo_name, ascending):
   """actually draw the draw_info to the canvas"""
@@ -145,10 +146,10 @@ def main():
   run = True
   clock = pygame.time.Clock()
   
-  n = 50
-  min = 0
-  max = 100
-  list =  generate_starting_list(n, min, max)
+  # n = 50
+  # min = 0
+  # max = 100
+  # list =  generate_starting_list(n, min, max)
   draw_info = DrawInformation(1024, 768, list)
   sorting = False
   ascending = True
@@ -191,7 +192,7 @@ def main():
       if event.type != pygame.KEYDOWN:
         continue
       if event.key == pygame.K_r:
-        list =  generate_starting_list(n, min, max)
+        # list =  generate_starting_list(n, min, max)
         draw_info.set_list(list)
         sorting == False
       elif event.key == pygame.K_SPACE and sorting == False:
