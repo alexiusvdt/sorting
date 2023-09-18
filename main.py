@@ -20,6 +20,8 @@ class DrawInformation:
   ]
   side_padding = 100
   top_padding = 150
+  font = pygame.font.SysFont('arial', 30)
+  large_font = pygame.font.SysFont('arial', 40)
 
   def __init__(self, width, height, list):
     # define the window & list of data
@@ -51,12 +53,24 @@ def generate_starting_list(n, min, max):
 def draw(draw_info):
   # could be optimized but less chance of leftover stuff on canvas
   draw_info.window.fill(draw_info.backgr_color)
+  controls = draw_info.font.render("R - Reset | SPACE - Start Sorting | A - Ascending | D - Descending", 1, draw_info.black)
+  draw_info.window.blit(controls, (draw_info.width/2 - controls.get_width()/2 , 5))
+
+  sorting = draw_info.font.render("I - Insertion Sort | B - Bubble Sort", 1, draw_info.black)
+  draw_info.window.blit(sorting, (draw_info.width/2 - controls.get_width()/2 , 35))
+  
   draw_list(draw_info)
   pygame.display.update()
 
-def draw_list(draw_info):
+
+def draw_list(draw_info, color_positions={}, clear_bg=False):
   # determine xy of each bar & adjust color shades
   list = draw_info.list
+
+  # keep text blit, clear the graph only
+  if clear_bg:
+    clear_rect = (draw_info.side_padding//2, draw_info.top_padding,
+                   draw_info.width - draw_info.side_padding, draw_info.height - draw_info.top_padding)
   
   for i, val in enumerate(list):
     # rectangles draw from topleft to downright in py
@@ -64,10 +78,35 @@ def draw_list(draw_info):
     y = draw_info.height - (val * draw_info.min_val ) * draw_info.block_height
 
     color = draw_info.gradients[i % 3]
+    
+    # sorting color override
+    if i in color_positions:
+      color = color_positions[i]
 
     # this is a little goofy - works perfectly 1/3 of time
     pygame.draw.rect(draw_info.window, color, (x, y, draw_info.block_width, draw_info.height))
   
+def bubble_sort(draw_info, ascending=True):
+  list = draw_info.list
+
+  for i in range(len(list-1)):
+    for j in range(len(list) - 1 - i):
+      num1 = list[j]
+      num2 = list[j + 1]
+
+      if (num1 > num2 and ascending) or (num1 < num2 and not ascending):
+        list[j], list[j + 1] = list[j + 1], list[j]
+        # draw_list()
+        # func is called for every swap, yield until called again. it pauses execution and resumes wherever keyword came from
+        # it stores current state of func and then picks back up there. this way can still use controls & buttons as func doesn't have full control 
+        yield True
+      
+  return list
+
+
+
+
+
 
 def main():
   run = True
@@ -78,6 +117,8 @@ def main():
   max = 100
   list =  generate_starting_list(n, min, max)
   draw_info = DrawInformation(1024, 768, list)
+  sorting = False
+  ascending = True
 
   # pygame needs a constant loop to handle game events/renders
   while run:
@@ -94,6 +135,13 @@ def main():
       if event.key == pygame.K_r:
         list =  generate_starting_list(n, min, max)
         draw_info.set_list(list)
+        sorting == False
+      elif event.key == pygame.K_SPACE and sorting == False:
+        sorting = True
+      elif event.key == pygame.K_a and not sorting:
+        ascending = True
+      elif event.key == pygame.K_d and not sorting:
+        ascending = False
 
   pygame.quit()
 
