@@ -40,6 +40,15 @@ def generate_starting_list(n, min, max):
     list.append(value)
   return list
 
+def draw(draw_info):
+  # could be optimized but less chance of leftover stuff on canvas
+  draw_info.window.fill(draw_info.backgr_color)
+  pygame.display.update()
+
+def draw_list(draw_info):
+  # determine xy of each bar & adjust color shades
+  pass
+
 def main():
   run = True
   clock = pygame.time.Clock()
@@ -55,7 +64,7 @@ def main():
   while run:
     # max loops/sec
     clock.tick(60)
-    pygame.display.update()
+    draw(draw_info)
 
     # all events since last loop
     for event in pygame.event.get():
