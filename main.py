@@ -1,5 +1,6 @@
 import pygame
 import random
+import math
 
 pygame.init()
 
@@ -19,7 +20,7 @@ class DrawInformation:
     drk_gray
   ]
   side_padding = 100
-  top_padding = 150
+  top_padding = 100
   font = pygame.font.SysFont('arial', 30)
   large_font = pygame.font.SysFont('arial', 40)
 
@@ -37,7 +38,7 @@ class DrawInformation:
     self.min_val = min(list)
     self.max_val = max(list)
     self.block_width = round((self.width - self.side_padding) / len(list))
-    self.block_height = round((self.height - self.top_padding) / (self.max_val - self.min_val))
+    self.block_height = math.floor((self.height - self.top_padding) / (self.max_val - self.min_val))
     # top left is 0,0 in pygame
     self.start_x = self.side_padding // 2
 
