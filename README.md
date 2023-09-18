@@ -6,11 +6,11 @@ This project aims to show knowledge of interfaces and sorting algorithms
   * users can sort ascending or descending
 
 # Technology
-* Flask API
-* PyGame (?)
+* Flask API (not yet implemented)
+* PyGame
 
 # Thanks
-* Tech with Tim (youtube)
+* Tech with Tim (youtube) for base functionality
 * Mike C for the guidance and experience
 
 # Bugs

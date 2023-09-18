@@ -101,7 +101,7 @@ def bubble_sort(draw_info, ascending=True):
 
       if (num1 > num2 and ascending) or (num1 < num2 and not ascending):
         list[j], list[j + 1] = list[j + 1], list[j]
-        draw_list(draw_info, {j: draw_info.green, j + 1: draw_info.red})
+        draw_list(draw_info, {j: draw_info.green, j + 1: draw_info.red}, True)
         # func is called for every swap, yield until called again. it pauses execution and resumes wherever keyword came from
         # it stores current state of func and then picks back up there. this way can still use controls & buttons as func doesn't have full control 
         yield True
