@@ -43,6 +43,14 @@ def generate_starting_list(n, min, max):
 def main():
   run = True
   clock = pygame.time.Clock()
+  
+  n = 50
+  min = 0
+  max = 100
+  list =  generate_starting_list(n, min, max)
+  draw_info = DrawInformation(800, 600, list)
+
+
   # pygame needs a constant loop to handle game events/renders
   while run:
     # max loops/sec
@@ -51,7 +59,7 @@ def main():
 
     # all events since last loop
     for event in pygame.event.get():
-      if event == pygame.QUIT:
+      if event.type == pygame.QUIT:
         run = False
 
   pygame.quit()
