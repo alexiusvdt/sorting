@@ -5,16 +5,35 @@ import './App.css';
 
 function App() {
 
-   // new line start
   const [nameData, setNameData] = useState(null)
+  const [sortData, getSortData] = useState(null)
 
+  function getSortData() {
+    axios({
+      method: "GET",
+      url:"/sort",
+      type: "bubble",
+    })
+    .then((response) => {
+      const res = response.data
+      setNameData(({
+        sortObj: res.sort_obj}))
+    }).catch((error) => {
+      if (error.response) {
+        console.log(error.response)
+        console.log(error.response.status)
+        console.log(error.response.headers)
+        }
+    })}
+
+  // example GET request
   function getData() {
     axios({
       method: "GET",
       url:"/data",
     })
     .then((response) => {
-      const res =response.data
+      const res = response.data
       setNameData(({
         first_name: res.fname,
         last_name: res.lname}))
@@ -25,7 +44,7 @@ function App() {
         console.log(error.response.headers)
         }
     })}
-    //end of new line 
+
 
   return (
     <div className="App">
@@ -43,14 +62,18 @@ function App() {
           Learn React
         </a>
 
-        {/* new line start*/}
+        <p>request a sort: </p><button onClick={getSortData}>Click me</button>
+        {sortData && <div>
+              <p>here's the sort object!: {sortData.sortObj}</p>
+        </div>}
+
         <p>To get your name info: </p><button onClick={getData}>Click me</button>
         {nameData && <div>
               <p>first name: {nameData.first_name}</p>
               <p>last: {nameData.last_name}</p>
             </div>
         }
-         {/* end of new line */}
+
       </header>
     </div>
   );
