@@ -6,6 +6,7 @@ pygame.init()
 
 # global values class for the game
 class DrawInformation:
+  """Establish the DrawInfo class which holds render sizing info and other constants"""
   black = 0,0,0
   white = 255, 255, 255
   green = 0, 255, 0
@@ -25,6 +26,7 @@ class DrawInformation:
   large_font = pygame.font.SysFont('arial', 40)
 
   def __init__(self, width, height, list):
+    """defines the window height & width, sets the window, and runs set_list which generates chart data"""
     # define the window & list of data
     self.width = width
     self.height = height
@@ -33,16 +35,17 @@ class DrawInformation:
     self.set_list(list)
 
   def set_list(self, list):
-    # calculate width/height of bars based on range of values
+    """defines visual block boundaries and configures their spacing within the padding and each other"""
+    # pygame starts with the upper-left corner at 0,0
     self.list = list
     self.min_val = min(list)
     self.max_val = max(list)
-    self.block_width = round((self.width - self.side_padding) / len(list))
+    self.block_width = math.floor((self.width - self.side_padding) / len(list))
     self.block_height = math.floor((self.height - self.top_padding) / (self.max_val - self.min_val))
-    # top left is 0,0 in pygame
     self.start_x = self.side_padding // 2
 
 def generate_starting_list(n, min, max):
+  """populate our list with n values between min and max"""
   list = []
 
   for _ in range(n):
@@ -52,6 +55,7 @@ def generate_starting_list(n, min, max):
   return list
 
 def draw(draw_info, sorting_algo_name, ascending):
+  """actually draw the draw_info to the canvas"""
   # could be optimized but less chance of leftover stuff on canvas
   draw_info.window.fill(draw_info.backgr_color)
   
@@ -69,10 +73,10 @@ def draw(draw_info, sorting_algo_name, ascending):
 
 
 def draw_list(draw_info, color_positions={}, clear_bg=False):
-  # determine xy of each bar & adjust color shades
+  """defines the clear box to show the graph in motion, actually draws the blocks from draw_info, and draws the bars"""
   list = draw_info.list
 
-  # keep text blit, clear the graph only
+  # keep text blits, clear the graph only
   if clear_bg:
     clear_rect = (draw_info.side_padding//2, draw_info.top_padding,
                    draw_info.width - draw_info.side_padding, draw_info.height - draw_info.top_padding)
@@ -89,7 +93,6 @@ def draw_list(draw_info, color_positions={}, clear_bg=False):
     if i in color_positions:
       color = color_positions[i]
 
-    # this is a little goofy - works perfectly 1/3 of time
     pygame.draw.rect(draw_info.window, color, (x, y, draw_info.block_width, draw_info.height))
 
   if clear_bg:
@@ -97,6 +100,7 @@ def draw_list(draw_info, color_positions={}, clear_bg=False):
     pygame.display.update()
   
 def bubble_sort(draw_info, ascending=True):
+  """implementing bubble sort on its own"""
   list = draw_info.list
 
   for i in range(len(list) - 1):
@@ -114,6 +118,7 @@ def bubble_sort(draw_info, ascending=True):
   return list
 
 def insertion_sort(draw_info, ascending=True):
+  """define insert sort on its own"""
   list = draw_info.list
 
   for i in range(1, len(list)):
@@ -136,6 +141,7 @@ def insertion_sort(draw_info, ascending=True):
 
 
 def main():
+  """core game loop, set up pygame and create the DrawInformation class"""
   run = True
   clock = pygame.time.Clock()
   
@@ -162,7 +168,8 @@ def main():
   sorting_algo_generator = None
   sorting_algorithm = bubble_sort
   sorting_algo_name = "Bubble Sort"
-  # pygame needs a constant loop to handle game events/renders
+
+
   while run:
     # max loops/sec. bigger number = faster
     clock.tick(120)
