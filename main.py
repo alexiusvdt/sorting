@@ -47,7 +47,7 @@ def generate_starting_list(n, min, max):
   for _ in range(n):
     value = random.randint(min, max)
     list.append(value)
-    print("appended: ", value)
+    # print("appended: ", value)
   return list
 
 def draw(draw_info):
@@ -71,7 +71,8 @@ def draw_list(draw_info, color_positions={}, clear_bg=False):
   if clear_bg:
     clear_rect = (draw_info.side_padding//2, draw_info.top_padding,
                    draw_info.width - draw_info.side_padding, draw_info.height - draw_info.top_padding)
-  
+    pygame.draw.rect(draw_info.window, draw_info.backgr_color, clear_rect)
+
   for i, val in enumerate(list):
     # rectangles draw from topleft to downright in py
     x = draw_info.start_x + i * draw_info.block_width
@@ -85,27 +86,27 @@ def draw_list(draw_info, color_positions={}, clear_bg=False):
 
     # this is a little goofy - works perfectly 1/3 of time
     pygame.draw.rect(draw_info.window, color, (x, y, draw_info.block_width, draw_info.height))
+
+  if clear_bg:
+    # force update
+    pygame.display.update()
   
 def bubble_sort(draw_info, ascending=True):
   list = draw_info.list
 
-  for i in range(len(list-1)):
+  for i in range(len(list) - 1):
     for j in range(len(list) - 1 - i):
       num1 = list[j]
       num2 = list[j + 1]
 
       if (num1 > num2 and ascending) or (num1 < num2 and not ascending):
         list[j], list[j + 1] = list[j + 1], list[j]
-        # draw_list()
+        draw_list(draw_info, {j: draw_info.green, j + 1: draw_info.red})
         # func is called for every swap, yield until called again. it pauses execution and resumes wherever keyword came from
         # it stores current state of func and then picks back up there. this way can still use controls & buttons as func doesn't have full control 
         yield True
       
   return list
-
-
-
-
 
 
 def main():
@@ -120,11 +121,36 @@ def main():
   sorting = False
   ascending = True
 
+  # generator calls the function to create the bubble_sort object
+  # first call returns a generator object, manually call the next() function and the next thing to be yielded
+  # first step runs, then hits yield, then next() then yield, etc 
+  # def gen():
+  #   yield 1
+  #   yield 2
+  # g = gen()
+  # next(g) -> 1
+  # next(g) -> 2
+  # next(g) -> .StopIterationException raised because there's nothing left
+  sorting_algo_generator = None
+  # name of generator func
+  sorting_algorithm = bubble_sort
+  sorting_algo_name = "Bubble Sort"
+  
+
   # pygame needs a constant loop to handle game events/renders
   while run:
     # max loops/sec
     clock.tick(60)
-    draw(draw_info)
+    
+    if sorting:
+      # try to call next method of generator
+      try:
+        next(sorting_algo_generator)
+      # turn off sorting once it's done
+      except StopIteration:
+        sorting = False  
+    else:
+      draw(draw_info)
 
     # all events since last loop
     for event in pygame.event.get():
@@ -138,6 +164,7 @@ def main():
         sorting == False
       elif event.key == pygame.K_SPACE and sorting == False:
         sorting = True
+        sorting_algo_generator = sorting_algorithm(draw_info, ascending)
       elif event.key == pygame.K_a and not sorting:
         ascending = True
       elif event.key == pygame.K_d and not sorting:
