@@ -51,14 +51,18 @@ def generate_starting_list(n, min, max):
     # print("appended: ", value)
   return list
 
-def draw(draw_info):
+def draw(draw_info, sorting_algo_name, ascending):
   # could be optimized but less chance of leftover stuff on canvas
   draw_info.window.fill(draw_info.backgr_color)
+  
+  title = draw_info.font.render(f"{sorting_algo_name} - {'Ascending' if ascending else 'Descending'}", 1, draw_info.black)
+  draw_info.window.blit(title, (draw_info.width/2 - title.get_width()/2 , 5))
+
   controls = draw_info.font.render("R - Reset | SPACE - Start Sorting | A - Ascending | D - Descending", 1, draw_info.black)
-  draw_info.window.blit(controls, (draw_info.width/2 - controls.get_width()/2 , 5))
+  draw_info.window.blit(controls, (draw_info.width/2 - controls.get_width()/2 , 35))
 
   sorting = draw_info.font.render("I - Insertion Sort | B - Bubble Sort", 1, draw_info.black)
-  draw_info.window.blit(sorting, (draw_info.width/2 - controls.get_width()/2 , 35))
+  draw_info.window.blit(sorting, (draw_info.width/2 - controls.get_width()/2 , 65))
   
   draw_list(draw_info)
   pygame.display.update()
@@ -140,8 +144,8 @@ def main():
 
   # pygame needs a constant loop to handle game events/renders
   while run:
-    # max loops/sec
-    clock.tick(60)
+    # max loops/sec. bigger number = faster
+    clock.tick(120)
     
     if sorting:
       # try to call next method of generator
@@ -151,7 +155,7 @@ def main():
       except StopIteration:
         sorting = False  
     else:
-      draw(draw_info)
+      draw(draw_info, sorting_algo_name, ascending)
 
     # all events since last loop
     for event in pygame.event.get():
