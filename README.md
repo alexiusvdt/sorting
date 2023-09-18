@@ -6,14 +6,17 @@ This project aims to show knowledge of interfaces and sorting algorithms
   * users can sort ascending or descending
 
 # Technology
-* Flask API (not yet implemented)
+* Flask 
 * PyGame
+* axios
 
 # Installation
 * clone this repository
-* navigate to the top level directory in a command line interface
-* run `pip install -r requirements.txt` to install required packages
-* run the main.py file to access the sorting display
+* navigate to the `flask` directory in a command line interface
+* run `.\env\Scripts\activate` to activate the virtual environment
+* run flask with `npm run start-flask` to start in dev mode
+* in a second terminal window, navigate to `frontend` directory
+* run the react frontend with `npm run start`
 
 # Thanks
 * Tech with Tim (youtube) for base functionality
@@ -21,7 +24,6 @@ This project aims to show knowledge of interfaces and sorting algorithms
 
 # Bugs / issues
 * graphs sometimes generate bars from top to bottom like the yaxis is inverted...maybe have to floor() it or somehow prevent negatives?
-* venv activation restricted on windows for some reason. setting user policies not working, will implement later
 
 # License
 MIT goes here
