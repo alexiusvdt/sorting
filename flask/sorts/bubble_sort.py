@@ -11,12 +11,13 @@ class BubbleSort(Sort):
 
         for i in range(len(items) - 1):
             for j in range(len(items) - 1 - i):
+                output[j] = items
                 num1 = items[j]
                 num2 = items[j + 1]
 
                 if (num1 > num2 and ascending) or (num1 < num2 and not ascending):
-                    items[j], items[j + 1] = items[j + 1], items[j]
-                    output[i] = items
+                    items[j], items[j + 1] = items[j + 1], items[j]                    
+        
         print('bubble done')            
         return output
 

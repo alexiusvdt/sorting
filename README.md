@@ -1,13 +1,14 @@
 ## Sorting Algorithms
-This project aims to show knowledge of interfaces and sorting algorithms & is a work in progress
+This project aims to show knowledge of interfaces and sorting algorithms & is a **work in progress** so pardon the dust
 
 # Goals
   * users can view various sorting algorithms at work
   * users can sort ascending or descending
+  * an API request is sent to the `sort` endpoint
 
 # Technology
 * Flask 
-* PyGame
+* PyGame (will be replaced as rendering the sort moves to react)
 * axios
 
 # Installation
@@ -25,6 +26,6 @@ This project aims to show knowledge of interfaces and sorting algorithms & is a 
 
 # Bugs / issues
 * graphs sometimes generate bars from top to bottom like the yaxis is inverted...maybe have to floor() it or somehow prevent negatives?
+* bubblesort output currently returns each step as the finished list
 
 # License
-MIT goes here

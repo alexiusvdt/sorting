@@ -28,7 +28,7 @@ def hello_world():
 def get_sort_obj():
   func = request.args.get('func')
   print('func type', func)
-  list = [10,8,84,1,55,26,83,9,18,4]
+  list = [10,8,84,1,55,6,26,83,9,18,4]
   ascending = True
   if func == "bubble":
     bubble = sorts.bubble_sort.BubbleSort(func, list)
