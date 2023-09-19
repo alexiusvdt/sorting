@@ -26,8 +26,8 @@ def hello_world():
 
 @api.route('/sort')
 def get_sort_obj():
-  func = request.args.get('type')
-  print('type', func)
+  func = request.args.get('func')
+  print('func type', func)
   list = [10,8,84,1,55,26,83,9,18,4]
   ascending = True
   if func == "bubble":

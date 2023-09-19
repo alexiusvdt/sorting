@@ -7,7 +7,7 @@ class BubbleSort(Sort):
 
     def _sort(self, items, ascending):
         print('sort entered')
-        output = []
+        output = {}
 
         for i in range(len(items) - 1):
             for j in range(len(items) - 1 - i):
@@ -16,8 +16,8 @@ class BubbleSort(Sort):
 
                 if (num1 > num2 and ascending) or (num1 < num2 and not ascending):
                     items[j], items[j + 1] = items[j + 1], items[j]
-                    output.append(items[j + 1])
-                    output.append(items[j])
+                    output[i] = items
+        print('bubble done')            
         return output
 
         # size = len(items)

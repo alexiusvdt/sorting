@@ -6,7 +6,7 @@ import './App.css';
 function App() {
 
   // const [nameData, setNameData] = useState(null)
-  const [bubbleData, setSortData] = useState(null)
+  const [sortData, setSortData] = useState(null)
 
   function getBubbleData() {
     console.log('starting fetch')
@@ -14,13 +14,13 @@ function App() {
       method: "GET",
       url:"/sort",
       params: {
-        "type": "bubble"
-      }
+        "func": "bubble"
+      },
     })
     .then((response) => {
       const res = response.data
       setSortData(({
-        sortObj: res}))
+        sortDict: res}))
     }).catch((error) => {
       if (error.response) {
         console.log(error.response)
@@ -66,9 +66,9 @@ function App() {
         </a>
 
         <p>request a sort: </p><button onClick={getBubbleData}>Click me</button>
-        {bubbleData && <div>
-              <p>here's the sort object!: {bubbleData.sortObj}</p>
-        </div>}
+        {/* {sortData && <div>
+              <p>we got something!: {sortData.sortDict}</p>
+        </div>} */}
 
         {/* <p>To get your name info: </p><button onClick={getData}>Click me</button>
         {nameData && <div>
