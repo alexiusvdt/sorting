@@ -11,7 +11,7 @@ class BubbleSort(Sort):
         while swapped:
             swapped = False
             for i in range(1, size):
-                if not self._comp_func(items[i - 1], items[i]):
+                if not self._func(items[i - 1], items[i]):
                     items[i - 1], items[i] = items[i], items[i - 1]
                     swapped = True
             size -= 1

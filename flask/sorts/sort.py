@@ -21,6 +21,7 @@ class Sort(ABC):
         return self._sort(self._items)
     
     def drawState(self):
+        # i dont think this needs to be overwritten as drawing should (?) always happen the same way
         pass
 
     @abstractmethod
