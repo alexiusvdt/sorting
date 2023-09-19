@@ -3,9 +3,9 @@ import axios from "axios";
 
 function Navbar() {
   const [sortData, setSortData] = useState(null)
-  const [selectedSize, setSelectedSize] = useState(null)
-  const [selectedAlgo, setSelectedAlgo] = useState(null)
-  const [selectedSpeed, setSelectedSpeed] = useState(null)
+  const [selectedSize, setSelectedSize] = useState(5)
+  const [selectedAlgo, setSelectedAlgo] = useState("bubble")
+  const [selectedSpeed, setSelectedSpeed] = useState("std")
 
  /**
  * @function
@@ -15,14 +15,14 @@ function Navbar() {
  * ~currently hardcoded~
  */
 
-  function getBubbleData() {
+  function getData() {
     console.log('starting fetch')
     axios({
       method: "GET",
       url:"/sort",
       params: {
-        "func": "bubble",
-        size: 5
+        "func": selectedAlgo,
+        size: selectedSize
       },
     })
     .then((response) => {
@@ -37,31 +37,21 @@ function Navbar() {
        }
    })}
 
-// function showSortData() {
-//   for (let i = 0; i <= sortData.length; i++) {
-//     console.log(sortData[i]);
-//   }
-// }
-
-function submitData() {
-    // pass
-}
-
   return (
     <div className="navbar" id="navbar">
-        <p>request a sort: </p><button onClick={getBubbleData}>Dummy Request</button>
+        {/* <p>request a sort: </p><button onClick={getBubbleData}>Dummy Request</button> */}
         <div className="form">
         <label>Array Size: </label>
         <select
           value={selectedSize}
-          defaultValue={"10"}
+          defaultValue={5}
           onChange={(e) => setSelectedSize(e.target.value)}
         >
           {/* <option value={"placeholder"}>Choose one...</option> */}
-          <option value={"10"}>10</option>
-          <option value={"25"}>25</option>
-          <option value={"50"}>50</option>
-          <option value={"100"}>100</option>
+          <option value={10}>10</option>
+          <option value={25}>25</option>
+          <option value={50}>50</option>
+          <option value={100}>100</option>
         </select>
         <label>Algorithm: </label>
         <select
@@ -84,7 +74,7 @@ function submitData() {
           <option value={"fast"}>2x</option>
           <option value={"sanic"}>100x</option>
         </select>
-        <button id="start" onClick = {submitData()}>Show me!</button>
+        <button id="start" onClick = {getData}>Show me!</button>
         </div>
     </div>
   );

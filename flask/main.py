@@ -24,21 +24,32 @@ def get_sort_obj():
   size = int(size)
   # print('func type', func)
   list = make_list(size)
-  print('list made', list)
-  ascending = True
-  if func == "bubble":
-    # see bubblesort for deepcopy reason
-    output = {
-      0 : copy.deepcopy(list)
-    }
-    bubble = sorts.bubble_sort.BubbleSort(func, list)
-    # print('bubble created', bubble)
-    sorted = bubble.do_sort(ascending)
-    output[1] = sorted
+  # print('list made', list)
+  
+  match func:
+    case "bubble":
+      output = {
+        0 : copy.deepcopy(list)
+      }
+      bubble = sorts.bubble_sort.BubbleSort(func, list)
+      sorted = bubble.do_sort()
+      output[1] = sorted
 
-    return output
-  else:
-    response_body = {
-      "you": " dun goofed"
-    }
-    return response_body
+      return output
+
+    case "merge":
+      output = {
+        0 : copy.deepcopy(list)
+      }
+      merge = sorts.merge_sort.MergeSort(func, list)
+      sorted = merge.do_sort()
+      output[1] = sorted
+
+
+
+
+    case _:
+      response_body = {
+        "you": " dun goofed"
+      }
+      return response_body

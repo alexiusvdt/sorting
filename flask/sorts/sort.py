@@ -12,13 +12,13 @@ class Sort(ABC):
         self._list = list
         super().__init__()
 
-    def do_sort(self, ascending):
+    def do_sort(self):
         """Returns a dictionary in the form of:
             iteration: array at that step
         """
-        return self._sort(self._list, ascending)
+        return self._sort(self._list)
     
 
     @abstractmethod
-    def _sort(self, list, ascending):
+    def _sort(self, list):
         pass
