@@ -16,6 +16,7 @@ class App extends Component {
     algorithm: '',
     timeouts: []
   }
+
   render() {
     return(
       <div className="App">

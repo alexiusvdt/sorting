@@ -26,10 +26,11 @@ function Navbar() {
        }
    })}
 
-function parseStateData() {
-  // takes the full state returned and splits it out into steps 
-    // pass
-}
+// function showSortData() {
+//   for (let i = 0; i <= sortData.length; i++) {
+//     console.log(sortData[i]);
+//   }
+// }
 
 function submitData() {
     // pass
@@ -37,7 +38,7 @@ function submitData() {
 
   return (
     <div className="navbar" id="navbar">
-        <p>request a sort: </p><button onClick={getBubbleData}>Click me</button>
+        <p>request a sort: </p><button onClick={getBubbleData}>Dummy Request</button>
         <div className="form">
             <label>Size: </label>
             <select id="arrSize" name="size">
@@ -59,7 +60,8 @@ function submitData() {
                 <option value="fast">2x</option>
             </select>
 
-            <button id="start" onClick = {submitData()}>Start</button>
+            <button id="start" onClick = {submitData()}>Show me!</button>
+            {/* <button id="print" onClick = {showSortData()}>show me the data</button> */}
         </div>
     </div>
   );

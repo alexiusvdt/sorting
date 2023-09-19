@@ -9,9 +9,8 @@ class BubbleSort(Sort):
     # declare dict structure and iterate new ones with each loop, adding via deep copy each time
     # (https://stackoverflow.com/questions/47876205/for-loop-is-overwriting-dictionary-values-in-list)
 
-
-
     def _sort(self, list, ascending):
+        """perform the actual bubble sort, recording the arr at each step"""
         print('sort entered')
         output = []
 
@@ -25,9 +24,6 @@ class BubbleSort(Sort):
                     list[j], list[j + 1] = list[j + 1], list[j] 
                 step = copy.deepcopy(list)
                 output.append(step)
-# print('step saved', step)
-# output.append(step)
-# print('added to output', output)
 
         print('bubble done', output)            
         return output
