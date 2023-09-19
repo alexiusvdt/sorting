@@ -1,19 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
+import axios from "axios";
 
 function Navbar() {
-//   state = {
-//     Algorithms: [
-//   { value: 1, type: 'Bubble Sort' },
-//   { value: 2, type: 'Selection Sort' },
-//   { value: 3, type: 'Insertion Sort' },
-//   { value: 4, type: 'Merge Sort' },
-//   { value: 5, type: 'Quick Sort' },
-//   { value: 6, type: 'Heap Sort' },
-//   { value: 7, type: 'Twist Sort' },
-// ],
-// lengths: [10, 20, 30, 40, 50, 60, 70, 80, 90, 100],
-// speeds: [0.50, 0.75, 1.00, 2.00, 4.00]
-// };
+ const [sortData, setSortData] = useState(null)
+
+ function getBubbleData() {
+   console.log('starting fetch')
+   axios({
+     method: "GET",
+     url:"/sort",
+     params: {
+       "func": "bubble"
+     },
+   })
+   .then((response) => {
+     const res = response.data
+     setSortData(({
+       sortDict: res}))
+   }).catch((error) => {
+     if (error.response) {
+       console.log(error.response)
+       console.log(error.response.status)
+       console.log(error.response.headers)
+       }
+   })}
 
 function doSomething() {
     // pass
@@ -25,7 +35,7 @@ function submitData() {
 
   return (
     <div className="navbar" id="navbar">
-        <p>ceci n'est pas une navbar</p>
+        <p>request a sort: </p><button onClick={getBubbleData}>Click me</button>
         <div className="form">
             <label>Size: </label>
             <select id="arrSize" name="size">
