@@ -27,11 +27,15 @@ def hello_world():
 @api.route('/sort')
 def get_sort_obj():
   func = request.args.get('type')
+  print('type', func)
   list = [10,8,84,1,55,26,83,9,18,4]
+  ascending = True
   if func == "bubble":
     bubble = sorts.bubble_sort.BubbleSort(func, list)
+    print('bubble created', bubble)
+    output = bubble.do_sort(ascending)
 
-    return json.dumps(bubble.__dict__)
+    return output
   else:
     response_body = {
       "you": "goofed"

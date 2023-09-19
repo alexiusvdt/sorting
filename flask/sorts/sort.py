@@ -12,18 +12,18 @@ class Sort(ABC):
         self._items = items
         super().__init__()
 
-    def do_sort(self):
+    def do_sort(self, ascending):
         """Returns the sorted version of the elements contained
         in the `_items` property via the `func` chosen.
         Returns:
             List: The sorted elements.
         """
-        return self._sort(self._items)
+        return self._sort(self._items, ascending)
     
     def drawState(self):
         # i dont think this needs to be overwritten as drawing should (?) always happen the same way
         pass
 
     @abstractmethod
-    def _sort(self, items):
+    def _sort(self, items, ascending):
         pass
