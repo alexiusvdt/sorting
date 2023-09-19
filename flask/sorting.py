@@ -141,7 +141,7 @@ def insertion_sort(draw_info, ascending=True):
   return list
 
 
-def main():
+def main_loop():
   """core game loop, set up pygame and create the DrawInformation class"""
   run = True
   clock = pygame.time.Clock()
@@ -211,7 +211,3 @@ def main():
 
   pygame.quit()
 
-# if running this module directly
-# this won't if module imported
-if __name__ == "__main__":
-  main()

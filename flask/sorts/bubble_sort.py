@@ -8,21 +8,25 @@ class BubbleSort(Sort):
     def _sort(self, list, ascending):
         print('sort entered')
         output = {}
-        print('unsorted list', list)
+        # print('unsorted list', list)
+        k = 0
+
         for i in range(len(list) - 1):
-            print(f'outer loop{i}', output)
+            # print(f'outer loop{i}', output)
             for j in range(len(list) - 1 - i):
+                output[k] = list
+                print(f'output at step {k}', output)
                 
                 num1 = list[j]
                 num2 = list[j + 1]
 
                 if (num1 > num2 and ascending) or (num1 < num2 and not ascending):
                     list[j], list[j + 1] = list[j + 1], list[j] 
-                    print(f'inner loop {j}', output)
-                    output[j] = list                   
-            output[i] = list
+                k += 1
+                print('hard counter var', k)
+                # print(f'inner loop {j}', output)
 
-        print('bubble done')            
+        print('bubble done', output)            
         return output
 
         # size = len(items)
