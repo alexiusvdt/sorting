@@ -15,33 +15,40 @@ function Navbar() {
 // speeds: [0.50, 0.75, 1.00, 2.00, 4.00]
 // };
 
-handleClick = (e) => {
-    e.preventDefault();
-    this.props.response();
+function doSomething() {
+    // pass
+}
+
+function submitData() {
+    // pass
 }
 
   return (
     <div className="navbar" id="navbar">
-        <button id="random" onClick = {() => this.props.newList(1)}>Random</button>
-        <Algorithms 
-            onChange = {this.props.onChange}
-            algorithms = {this.state.Algorithms}
-        />
-        <Size 
-            onChange = {this.props.onChange}
-            lengths = {this.state.lengths}
-        />
-        <Speed 
-            onChange = {this.props.onChange}
-            speeds = {this.state.speeds}
-        />
-        <button id="start" onClick = {() => this.props.start()}>Start</button>
-        <a 
-            className="icon" 
-            onClick = {(e) => this.handleClick(e)}
-            href = "/">
-            <i className="fa fa-bars"></i>
-        </a>
+        <p>ceci n'est pas une navbar</p>
+        <div className="form">
+            <label>Size: </label>
+            <select id="arrSize" name="size">
+                <option value="10">10</option>
+                <option value="25">25</option>
+                <option value="50" selected>50</option>
+                <option value="100">100</option>
+            </select>
+            <label>Algorithm: </label>
+            <select id="algorithm" name="algorithm">
+                <option value="bubble">Bubble Sort</option>
+                <option value="merge">Merge Sort</option>
+                <option value="heap">Heap Sort</option>
+            </select>
+            <label>Speed: </label>
+            <select id="speed" name="speed">
+                <option value="half">0.5x</option>
+                <option value="standard" selected>1x</option>
+                <option value="fast">2x</option>
+            </select>
+
+            <button id="start" onClick = {submitData()}>Start</button>
+        </div>
     </div>
   );
 }

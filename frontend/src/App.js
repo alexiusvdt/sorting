@@ -2,6 +2,9 @@ import { useState } from 'react'
 import axios from "axios";
 import logo from './logo.svg';
 import './App.css';
+import Navbar from './components/Navbar';
+import Visualizer from './components/Visualizer';
+
 
 function App() {
 
@@ -51,33 +54,14 @@ function App() {
 
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <Navbar />
+      <Visualizer />
 
         <p>request a sort: </p><button onClick={getBubbleData}>Click me</button>
         {/* {sortData && <div>
               <p>we got something!: {sortData.sortDict}</p>
         </div>} */}
 
-        {/* <p>To get your name info: </p><button onClick={getData}>Click me</button>
-        {nameData && <div>
-              <p>first name: {nameData.first_name}</p>
-              <p>last: {nameData.last_name}</p>
-            </div>
-        } */}
-
-      </header>
     </div>
   );
 }
