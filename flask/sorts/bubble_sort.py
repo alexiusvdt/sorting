@@ -15,7 +15,7 @@ class BubbleSort(Sort):
             # print(f'outer loop{i}', output)
             for j in range(len(list) - 1 - i):
                 output[k] = list
-                print(f'output at step {k}', output)
+                # print(f'output at step {k}', output)
                 
                 num1 = list[j]
                 num2 = list[j + 1]
@@ -23,10 +23,10 @@ class BubbleSort(Sort):
                 if (num1 > num2 and ascending) or (num1 < num2 and not ascending):
                     list[j], list[j + 1] = list[j + 1], list[j] 
                 k += 1
-                print('hard counter var', k)
+                # print('hard counter var', k)
                 # print(f'inner loop {j}', output)
 
-        print('bubble done', output)            
+        print('bubble done')            
         return output
 
         # size = len(items)

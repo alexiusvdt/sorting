@@ -1,5 +1,6 @@
 from flask import Flask, jsonify
 from flask import request
+import random
 import json
 
 import sorts.sort
@@ -8,27 +9,21 @@ import sorts.bubble_sort
 
 api = Flask(__name__)
 
-@api.route("/")
-def hello_world():
-  return "<p>Hello, World!</p>"
-
-# test func
-# # view funcs in flask default to GET
-# @api.route('/data')
-# def name_data():
-#   # flask will change the dict to JSON automagically
-#   response_body = {
-#     "fname" : "Thomas",
-#     "lname" : "Jeffersonius"
-#   }
-
-#   return response_body
+def make_list(size):
+  list = []
+  for i in range(size):
+    list.append(random.randint(0,100))
+  # print('list made', list)
+  return list
 
 @api.route('/sort')
 def get_sort_obj():
+  print(request.args)
   func = request.args.get('func')
-  print('func type', func)
-  list = [10,8,84,1,55,6,26,83,9,18,4]
+  size = request.args.get('size')
+  size = int(size)
+  # print('func type', func)
+  list = make_list(size)
   ascending = True
   if func == "bubble":
     bubble = sorts.bubble_sort.BubbleSort(func, list)

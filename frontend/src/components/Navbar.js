@@ -10,7 +10,8 @@ function Navbar() {
      method: "GET",
      url:"/sort",
      params: {
-       "func": "bubble"
+       "func": "bubble",
+       size: 50
      },
    })
    .then((response) => {
