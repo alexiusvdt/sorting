@@ -29,7 +29,7 @@ def get_sort_obj():
     bubble = sorts.bubble_sort.BubbleSort(func, list)
     print('bubble created', bubble)
     output = bubble.do_sort(ascending)
-
+    
     return output
   else:
     response_body = {

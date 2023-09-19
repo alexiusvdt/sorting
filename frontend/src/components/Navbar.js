@@ -11,13 +11,13 @@ function Navbar() {
      url:"/sort",
      params: {
        "func": "bubble",
-       size: 50
+       size: 5
      },
    })
    .then((response) => {
+    console.log(response)
      const res = response.data
-     setSortData(({
-       sortDict: res}))
+     setSortData(({res}))
    }).catch((error) => {
      if (error.response) {
        console.log(error.response)
@@ -26,7 +26,8 @@ function Navbar() {
        }
    })}
 
-function doSomething() {
+function parseStateData() {
+  // takes the full state returned and splits it out into steps 
     // pass
 }
 
