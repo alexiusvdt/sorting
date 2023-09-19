@@ -5,19 +5,23 @@ class BubbleSort(Sort):
     # init and sort() are inherited from Sort
     # we redefine _sort()
 
-    def _sort(self, items, ascending):
+    def _sort(self, list, ascending):
         print('sort entered')
         output = {}
-
-        for i in range(len(items) - 1):
-            for j in range(len(items) - 1 - i):
-                output[j] = items
-                num1 = items[j]
-                num2 = items[j + 1]
+        print('unsorted list', list)
+        for i in range(len(list) - 1):
+            print(f'outer loop{i}', output)
+            for j in range(len(list) - 1 - i):
+                
+                num1 = list[j]
+                num2 = list[j + 1]
 
                 if (num1 > num2 and ascending) or (num1 < num2 and not ascending):
-                    items[j], items[j + 1] = items[j + 1], items[j]                    
-        
+                    list[j], list[j + 1] = list[j + 1], list[j] 
+                    print(f'inner loop {j}', output)
+                    output[j] = list                   
+            output[i] = list
+
         print('bubble done')            
         return output
 
