@@ -60,7 +60,7 @@ function Navbar() {
           onChange={(e) => setSelectedAlgo(e.target.value)}
         >
           <option value={"bubble"}>Bubble Sort</option>
-          <option value={"merge"}>Merge Sort</option>
+          <option value={"insert"}>Insert Sort</option>
           <option value={"tbd"}>Heap Sort</option>
         </select>
         <label>Speed: </label>

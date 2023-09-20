@@ -6,6 +6,7 @@ import copy
 
 import sorts.sort
 import sorts.bubble_sort
+import sorts.insert_sort
 # do aliasing on these so you dont have to type out the full thing
 
 api = Flask(__name__)
@@ -18,14 +19,12 @@ def make_list(size):
 
 @api.route('/sort')
 def get_sort_obj():
-  # print(request.args)
   func = request.args.get('func')
   size = request.args.get('size')
   size = int(size)
-  # print('func type', func)
   list = make_list(size)
-  # print('list made', list)
   
+  # yes this could be DRY-er, but that's for later
   match func:
     case "bubble":
       output = {
@@ -37,15 +36,15 @@ def get_sort_obj():
 
       return output
 
-    case "merge":
+    case "insert":
       output = {
         0 : copy.deepcopy(list)
       }
-      merge = sorts.merge_sort.MergeSort(func, list)
-      sorted = merge.do_sort()
+      insert = sorts.insert_sort.InsertSort(func, list)
+      sorted = insert.do_sort()
       output[1] = sorted
 
-
+      return output
 
 
     case _:
