@@ -7,6 +7,7 @@ import copy
 import sorts.sort
 import sorts.bubble_sort
 import sorts.insert_sort
+import sorts.selection_sort
 # do aliasing on these so you dont have to type out the full thing
 
 api = Flask(__name__)
@@ -46,6 +47,15 @@ def get_sort_obj():
 
       return output
 
+    case "selection":
+      output = {
+        0 : copy.deepcopy(list)
+      }
+      selection = sorts.selection_sort.SelectionSort(func, list)
+      sorted = selection.do_sort()
+      output[1] = sorted
+
+      return output
 
     case _:
       response_body = {
