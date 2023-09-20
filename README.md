@@ -19,7 +19,7 @@ Ratings are just personal preferences (though I wish I could rate bogo sort high
 | Radix sort      | O(n * k)      | 4/5          |
 | Bucket sort     | O(n + k)      | 4/5          |
 | Bogo sort       | O((n+1)!)     | 1/5          |
-| Miracle sort    | O(1)          | 0/5          |
+| Miracle sort    | O(∞)          | 0/5          |
 
 
 
