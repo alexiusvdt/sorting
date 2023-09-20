@@ -46,7 +46,7 @@ Ratings are just personal preferences (though I wish I could rate bogo sort high
 * run the react frontend with `npm run start`
 
 # Thanks
-* Tech with Tim (youtube) for base functionality
+* Tech with Tim (youtube) for a jumping-off point and helpful pygame tutorial
 * Mike C & Billy F for the guidance and experience
 
 # Bugs / Issues
