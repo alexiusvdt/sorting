@@ -5,9 +5,10 @@ import copy
 # import json
 
 import sorts.sort
-import sorts.bubble_sort
-import sorts.insert_sort
-import sorts.selection_sort
+import sorts.bubble
+import sorts.insert
+import sorts.selection
+import sorts.merge
 # do aliasing on these so you dont have to type out the full thing
 
 api = Flask(__name__)
@@ -31,7 +32,7 @@ def get_sort_obj():
       output = {
         0 : copy.deepcopy(list)
       }
-      bubble = sorts.bubble_sort.BubbleSort(func, list)
+      bubble = sorts.bubble.BubbleSort(func, list)
       sorted = bubble.do_sort()
       output[1] = sorted
 
@@ -41,7 +42,7 @@ def get_sort_obj():
       output = {
         0 : copy.deepcopy(list)
       }
-      insert = sorts.insert_sort.InsertSort(func, list)
+      insert = sorts.insert.InsertSort(func, list)
       sorted = insert.do_sort()
       output[1] = sorted
 
@@ -51,8 +52,18 @@ def get_sort_obj():
       output = {
         0 : copy.deepcopy(list)
       }
-      selection = sorts.selection_sort.SelectionSort(func, list)
+      selection = sorts.selection.SelectionSort(func, list)
       sorted = selection.do_sort()
+      output[1] = sorted
+
+      return output
+    
+    case "merge":
+      output = {
+        0 : copy.deepcopy(list)
+      }
+      merge = sorts.merge.MergeSort(func, list)
+      sorted = merge.do_sort()
       output[1] = sorted
 
       return output
