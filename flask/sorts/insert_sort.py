@@ -14,11 +14,14 @@ class InsertSort(Sort):
     for i in range(1, len(list)):
       key = list[i]
       j = i - 1
-      while j > 0 and key < list[j]:
+      while j >= 0 and key < list[j]:
         list[j + 1] = list[j]
         j -= 1
+        step = copy.deepcopy(list)
+        output.append(step)
       list[j+1] = key
-      step = copy.deepcopy(list)
-      output.append(step)
-    
+    step = copy.deepcopy(list)
+    output.append(step)
+
+
     return output
