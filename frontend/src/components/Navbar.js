@@ -4,7 +4,7 @@ import axios from "axios";
 function Navbar() {
   const [sortData, setSortData] = useState(null)
   const [selectedSize, setSelectedSize] = useState(10)
-  const [selectedAlgo, setSelectedAlgo] = useState("merge")
+  const [selectedAlgo, setSelectedAlgo] = useState("bogo")
   const [selectedSpeed, setSelectedSpeed] = useState("std")
 
  /**
@@ -59,9 +59,9 @@ function Navbar() {
       >
         <option value={"bubble"}>Bubble Sort</option>
         <option value={"insert"}>Insert Sort</option>
-        <option value={"merge"}>Merge Sort</option>
+        <option value={"bogo"}>Bogo Sort</option>
         <option value={"selection"}>Selection Sort</option>
-
+        <option value={"merge"}>Merge Sort</option>
         <option value={"tbd"}>Heap Sort</option>
       </select>
       <label>Speed: </label>

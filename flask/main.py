@@ -8,6 +8,7 @@ import sorts.sort
 import sorts.bubble
 import sorts.insert
 import sorts.selection
+import sorts.bogo
 import sorts.merge
 # do aliasing on these so you dont have to type out the full thing
 
@@ -64,6 +65,16 @@ def get_sort_obj():
       }
       merge = sorts.merge.MergeSort(func, list)
       sorted = merge.do_sort()
+      output[1] = sorted
+
+      return output
+    
+    case "bogo":
+      output = {
+        0 : copy.deepcopy(list)
+      }
+      bogo = sorts.bogo.BogoSort(func, list)
+      sorted = bogo.do_sort()
       output[1] = sorted
 
       return output
