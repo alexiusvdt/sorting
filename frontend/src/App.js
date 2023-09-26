@@ -39,8 +39,8 @@ const App = () => {
   })
   .then((response) => {
   console.log(response)
-  const res = response.data
-  setFetchedData(({res}))
+  const data = response.data
+  setFetchedData(({data}))
  }).catch((error) => {
    if (error.response) {
      console.log(error.response)
@@ -48,6 +48,7 @@ const App = () => {
      console.log(error.response.headers)
      }
  })}
+
   return(
     <div className="App">
     <Navbar 
