@@ -49,16 +49,15 @@ const data = [
 
 const Visualizer= ({ fetchedData }) => {
   console.log('fetcheddata passed down', fetchedData)  
-  const startData = fetchedData.data[0]
-  const seriesData = fetchedData.data[1]
-  console.log('starting data', startData)
-  console.log('series data', seriesData)
+  // const startData = fetchedData.data[0]
+  // const seriesData = fetchedData.data[1]
+
 
     return (
       <div className='wrapper' width={500} height={500} position="fixed" top="50%" left="50%" >
         <ResponsiveContainer width="100%" height={400}>
-          <BarChart width={150} height={4000} data={startData}>
-            <Bar dataKey="value" fill="#8884d8" />
+          <BarChart width={150} height={4000} data={fetchedData.data[0]}>
+            <Bar dataKey="values" fill="#8884d8" />
           </BarChart>
         </ResponsiveContainer>
       </div>
