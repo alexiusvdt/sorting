@@ -1,85 +1,59 @@
 import React, { useState } from "react";
-import axios from "axios";
 
-function Navbar() {
-  const [sortData, setSortData] = useState(null)
-  const [selectedSize, setSelectedSize] = useState(10)
-  const [selectedAlgo, setSelectedAlgo] = useState("bogo")
-  const [selectedSpeed, setSelectedSpeed] = useState("std")
-  const [disableControls, setDisableControls] = useState(false)
+const Navbar = ({ updateParams }) => {
+  const [formData, setFormData] = useState({
+    selectedAlgo: "bubble",
+    selectedSize: 10,
+    selectedSpeed: "std"
+    });
 
- /**
- * @function
- * calls the api & returns an object & stashes into state
- * 0 will be the original randomized array
- * 1 will contain subarrays with each step of the process
- */
-
-  function getData() {
-    setDisableControls = true
-    console.log('starting fetch')
-    axios({
-      method: "GET",
-      url:"/sort",
-      params: {
-        "func": selectedAlgo,
-        size: selectedSize
-      },
-    })
-    .then((response) => {
-    console.log(response)
-    const res = response.data
-    setSortData(({res}))
-   }).catch((error) => {
-     if (error.response) {
-       console.log(error.response)
-       console.log(error.response.status)
-       console.log(error.response.headers)
-       }
-   })
-  setDisableControls = false
-  }
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    updateParams(formData)
+  };
 
   return (
     <div className="navbar" id="navbar">
       <div className="form">
-      <label>Array Size: </label>
-      <select
-        value={selectedSize}
-        defaultValue={10}
-        onChange={(e) => setSelectedSize(e.target.value)}
-      >
-        {/* <option value={"placeholder"}>Choose one...</option> */}
-        <option value={10}>10</option>
-        <option value={25}>25</option>
-        <option value={50}>50</option>
-        <option value={100}>100</option>
-      </select>
-      <label>Algorithm: </label>
-      <select
-        value={selectedAlgo}
-        defaultValue={"bubble"}
-        onChange={(e) => setSelectedAlgo(e.target.value)}
-      >
-        <option value={"bubble"}>Bubble Sort</option>
-        <option value={"insert"}>Insert Sort</option>
-        <option value={"bogo"}>Bogo Sort</option>
-        <option value={"selection"}>Selection Sort</option>
-        <option value={"merge"}>Merge Sort</option>
-        <option value={"tbd"}>Heap Sort</option>
-      </select>
-      <label>Speed: </label>
-      <select
-        value={selectedSpeed}
-        defaultValue={"std"}
-        onChange={(e) => setSelectedSpeed(e.target.value)}
-      >
-        <option value={"half"}>0.5x</option>
-        <option value={"std"}>1x</option>
-        <option value={"fast"}>2x</option>
-        <option value={"sanic"}>100x</option>
-      </select>
-      <button id="start" onClick = {getData}>Show me!</button>
+        <form onSubmit={handleSubmit}>
+        <label>Array Size: </label>
+        <select
+          value={formData.selectedSize}
+          defaultValue={10}
+          onChange={(e) => setFormData({ ...formData, selectedSize: e.target.value })}
+        >
+          {/* <option value={"placeholder"}>Choose one...</option> */}
+          <option value={10}>10</option>
+          <option value={25}>25</option>
+          <option value={50}>50</option>
+          <option value={100}>100</option>
+        </select>
+        <label>Algorithm: </label>
+        <select
+          value={formData.selectedAlgo}
+          defaultValue={"bubble"}
+          onChange={(e) => setFormData({ ...formData, selectedAlgo: e.target.value })}
+        >
+          <option value={"bubble"}>Bubble Sort</option>
+          <option value={"insert"}>Insert Sort</option>
+          <option value={"bogo"}>Bogo Sort</option>
+          <option value={"selection"}>Selection Sort</option>
+          <option value={"merge"}>Merge Sort</option>
+          <option value={"tbd"}>Heap Sort</option>
+        </select>
+        <label>Speed: </label>
+        <select
+          value={formData.selectedSpeed}
+          defaultValue={"std"}
+          onChange={(e) => setFormData({ ...formData, selectedSpeed: e.target.value })}
+          >
+          <option value={"half"}>0.5x</option>
+          <option value={"std"}>1x</option>
+          <option value={"fast"}>2x</option>
+          <option value={"sanic"}>100x</option>
+        </select>
+        <button type="submit" id="submit">Fetch Data</button>
+        </form>  
       </div>
     </div>
   );

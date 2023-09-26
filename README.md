@@ -1,7 +1,7 @@
 ## Sorting Algorithms
 This project is a **work in progress** so pardon the dust.
 
-Sorting algorithms are used to sort large numbers of items into specific orders such as alphabetical, highest-to-lowest value or shortest-to-longest distance. In this application, I hope to show various sorting algorithms and their strengths or weaknesses. 
+Sorting algorithms are used to put elements of a list into an order, either numeric or lexicographical. In this application, I hope to show various sorting algorithms and their strengths or weaknesses. 
 
 While perhaps not the most straightforward implementation for this project, I wanted to demonstrate knowledge of distributed systems, sorting algorithms, API usage, and interfaces/abstract Classes.
 
@@ -35,6 +35,8 @@ Ratings are just personal preferences (though I wish I could rate bogo sort high
 * Flask 
 * PyGame (for practice displaying sorts, will be removed from final iteration)
 * axios
+* material design
+* recharts
 
 # Installation
 * clone this repository
