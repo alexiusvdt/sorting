@@ -10,11 +10,16 @@ const App = () => {
   const [requestParams, setRequestParams] = useState(null)
   const [disableControls, setDisableControls] = useState(false)
   
-const updateParams = (formData) => {
+/**
+ * @function
+ * takes form data from child, sets params for axios, and executes fetch 
+ */
+  const updateParams = (formData) => {
   setRequestParams(formData);
+  setDisableControls(true)
   fetchData(formData); 
+  setDisableControls(false)
 };
-
 
  /**
  * @function
@@ -22,9 +27,7 @@ const updateParams = (formData) => {
  * 0 will be the original randomized array
  * 1 will contain subarrays with each step of the process
  */
-
  const fetchData = (params) => {
-  setDisableControls = true
   console.log('starting fetch')
   axios({
     method: "GET",
@@ -44,10 +47,7 @@ const updateParams = (formData) => {
      console.log(error.response.status)
      console.log(error.response.headers)
      }
- })
-setDisableControls = false
-}
-
+ })}
   
   return(
     <div className="App">
@@ -60,7 +60,5 @@ setDisableControls = false
   </div>
   )
 }
-
-
 
 export default App;
