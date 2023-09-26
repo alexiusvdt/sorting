@@ -6,6 +6,7 @@ function Navbar() {
   const [selectedSize, setSelectedSize] = useState(10)
   const [selectedAlgo, setSelectedAlgo] = useState("bogo")
   const [selectedSpeed, setSelectedSpeed] = useState("std")
+  const [disableControls, setDisableControls] = useState(false)
 
  /**
  * @function
@@ -15,6 +16,7 @@ function Navbar() {
  */
 
   function getData() {
+    setDisableControls = true
     console.log('starting fetch')
     axios({
       method: "GET",
@@ -34,7 +36,9 @@ function Navbar() {
        console.log(error.response.status)
        console.log(error.response.headers)
        }
-   })}
+   })
+  setDisableControls = false
+  }
 
   return (
     <div className="navbar" id="navbar">
