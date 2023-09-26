@@ -1,67 +1,53 @@
-import React from 'react';
-import { BarChart, Bar, ResponsiveContainer } from 'recharts';
-// Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend,
+import React, { useEffect, useRef } from 'react';
+import * as d3 from 'd3';
 
-const data = [
-  {
-    name: 'Page A',
-    uv: 4000,
-    pv: 2400,
-    amt: 2400,
-  },
-  {
-    name: 'Page B',
-    uv: 3000,
-    pv: 1398,
-    amt: 2210,
-  },
-  {
-    name: 'Page C',
-    uv: 2000,
-    pv: 9800,
-    amt: 2290,
-  },
-  {
-    name: 'Page D',
-    uv: 2780,
-    pv: 3908,
-    amt: 2000,
-  },
-  {
-    name: 'Page E',
-    uv: 1890,
-    pv: 4800,
-    amt: 2181,
-  },
-  {
-    name: 'Page F',
-    uv: 2390,
-    pv: 3800,
-    amt: 2500,
-  },
-  {
-    name: 'Page G',
-    uv: 3490,
-    pv: 4300,
-    amt: 2100,
-  },
-];
+const Visualizer = ({ fetchedData }) => {
+  const svgRef = useRef();
 
-const Visualizer= ({ fetchedData }) => {
-  console.log('fetcheddata passed down', fetchedData)  
-  // const startData = fetchedData.data[0]
-  // const seriesData = fetchedData.data[1]
+  useEffect(() => {
+    const svg = d3.select(svgRef.current)
+      .attr("width", 800) // Set the width of the SVG
+      .attr("height", 500) // Set the height of the SVG
+      .style("margin-top", "25px");
 
+    const margin = { top: 10, right: 10, bottom: 30, left: 40 };
+    const width = 800 - margin.left - margin.right;
+    const height = 500 - margin.top - margin.bottom;
+    
+    // offset for labels
+    const g = svg.append("g")
+      .attr("transform", `translate(${margin.left},${margin.top})`);
+    
+    const xScale = d3.scaleBand()
+      .domain(fetchedData.data[0].map((_, i) => i))
+      .range([0, width])
+      .padding(0.1);
 
-    return (
-      <div className='wrapper' width={500} height={500} position="fixed" top="50%" left="50%" >
-        <ResponsiveContainer width="100%" height={400}>
-          <BarChart width={150} height={4000} data={fetchedData.data[0]}>
-            <Bar dataKey="values" fill="#8884d8" />
-          </BarChart>
-        </ResponsiveContainer>
-      </div>
-    );
-  }
+    const yScale = d3.scaleLinear()
+      .domain([0, d3.max(fetchedData.data[0])])
+      .range([height, 0]);
+
+    svg.selectAll("rect")
+      .data(fetchedData.data[0])
+      .enter().append("rect")
+      .attr("x", (d, i) => xScale(i))
+      .attr("y", d => yScale(d))
+      .attr("width", xScale.bandwidth())
+      .attr("height", d => height - yScale(d))
+      .attr("fill", "steelblue");
+      
+    svg.selectAll("text")
+      .data(fetchedData.data[0])
+      .enter().append("text")
+      .attr("x", (d, i) => xScale(i) + xScale.bandwidth() / 2)
+      .attr("y", height + 20) // Adjust y pos of labels
+      .attr("text-anchor", "middle")
+      .attr("fill", "black")
+      .text(d => d);
+}, [fetchedData.data]);
+
+  // show the result
+  return <svg ref={svgRef}></svg>;
+}
 
 export default Visualizer;
