@@ -1,4 +1,4 @@
-import React, { Component, useState } from 'react'
+import React, { useState } from 'react'
 import axios from "axios";
 import './App.css';
 import Navbar from './components/Navbar';
@@ -7,7 +7,7 @@ import Visualizer from './components/Visualizer';
 const App = () => {
 
   const [fetchedData, setFetchedData] = useState(null)
-  const [requestParams, setRequestParams] = useState(null)
+  const [requestParams, setRequestParams] = useState({})
   const [disableControls, setDisableControls] = useState(false)
   
 /**
@@ -15,10 +15,10 @@ const App = () => {
  * takes form data from child, sets params for axios, and executes fetch 
  */
   const updateParams = (formData) => {
-  setRequestParams(formData);
-  setDisableControls(true)
-  fetchData(formData); 
-  setDisableControls(false)
+    setRequestParams({ ...formData });
+    setDisableControls(true)
+    fetchData(formData); 
+    setDisableControls(false)
 };
 
  /**
@@ -27,14 +27,14 @@ const App = () => {
  * 0 will be the original randomized array
  * 1 will contain subarrays with each step of the process
  */
- const fetchData = (params) => {
+ const fetchData = (requestParams) => {
   console.log('starting fetch')
   axios({
     method: "GET",
     url:"/sort",
     params: {
-      "func": params.selectedAlgo,
-      size: params.selectedSize
+      "func": requestParams.selectedAlgo,
+      size: requestParams.selectedSize
     },
   })
   .then((response) => {
@@ -48,15 +48,17 @@ const App = () => {
      console.log(error.response.headers)
      }
  })}
-  
   return(
     <div className="App">
     <Navbar 
-      setRequestParams = {updateParams}
+      updateParams = {updateParams}
     />
-    <Visualizer 
-      fetchedData = {fetchedData}
-    />
+    {/* if fetchedData null, don't render this component */}
+    {fetchedData !== null &&
+      <Visualizer 
+        fetchedData = {fetchedData}
+      />
+    }
   </div>
   )
 }
