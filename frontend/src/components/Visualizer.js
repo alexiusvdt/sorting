@@ -1,11 +1,15 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Bar from './Bar'
 import { FaPlay as Play } from 'react-icons/fa';
-import { FaArrowRightLong as Forward } from 'react-icons/fa6';
-import { FaArrowLeftLong as Backward } from 'react-icons/fa6';
-import { FaArrowRotateLeft as RotateLeft} from 'react-icons/fa6';
+// import { FaArrowRightLong as Forward } from 'react-icons/fa6';
+// import { FaArrowLeftLong as Backward } from 'react-icons/fa6';
+// import { FaArrowRotateLeft as RotateLeft} from 'react-icons/fa6';
 
 const Visualizer = ({ fetchedData }) => {
+  // useful for locking controls or conditional display of reset button (rotateleft)
+  const [playing, setIsPlaying] = useState(false)
+
+  // destructure data
   const init = fetchedData.data[0]
   const steps = fetchedData.data[1]
   console.log('init data', init)
@@ -14,12 +18,16 @@ const Visualizer = ({ fetchedData }) => {
   const start = () => {
     let i = 0
     while (i < steps.length) {
+      console.log("start executed", i)
       // render each subsequent arr
+      i++
     }
   }  
 
-  // have to pass down length because bar cares about values inside array not the entire array!
+  // bar has some static color lookup options
   let color = 1;
+  // this needs to go in a loop, but still have its output readable by the div
+  // maybe put in a useEffect so first loop renders init, then on play it can cycle through steps?
   let bars = init.map((value, index) => (
     <Bar 
       key={index}
@@ -29,9 +37,6 @@ const Visualizer = ({ fetchedData }) => {
       />
     ));
   
-  // this needs to go in a loop, but still have its output readable by the div
-  // maybe put in a useEffect so first loop renders init, then on play it can cycle through steps?
-
   let playButton = (
     <button className='controller' onClick={start}>
       <Play />
@@ -40,20 +45,14 @@ const Visualizer = ({ fetchedData }) => {
 
   return (
   <>
+  {/* todo: needs to be limited to page width, currently will spill out like crazy with large arr sizes */}
     <div className='frame'>
       <div className='barsDiv container card'>{bars}</div>
     </div>
     <div className='control-panel'>
-      <p>control buttons go here</p>
-      {/* <div className='control-buttons'>
-        <button className='controller' onClick={this.previousStep}>
-          <Backward />
-        </button>
+      <div className='control-buttons'>
         {playButton}
-        <button className='controller' onClick={this.nextStep}>
-          <Forward />
-        </button> 
-      </div> */}
+      </div>
     </div>
     <div className='panel'></div>
   </>
