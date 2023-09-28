@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './Bar.css';
 
-function Bar({ index, length }) {
+function Bar({ index, length, color, changeArray }) {
 	const [len, setLen] = useState(length);
 
     useEffect(() => {
@@ -9,11 +9,8 @@ function Bar({ index, length }) {
     }, [length]);
 
 	const colors = [
-		// background
 		['rgba(61, 90, 241, 0.5)', 'rgba(61, 90, 241, 0.2)'],
-		// moving
 		['rgba(255, 48, 79, 1)', 'rgba(255, 48, 79, 0.5)'],
-		// done
 		['rgba(131, 232, 90, 0.5)', 'rgba(131, 232, 90, 0.2)'],
 	];
 
@@ -32,26 +29,22 @@ function Bar({ index, length }) {
 
 	const bottom = {
 		transform: `translateY(${200 - length}px) rotateX(-90deg)`,
-		backgroundColor: `${colors[0][0]}`,
-		boxShadow: `5px 5px 50px 5px ${colors[0][1]}`,
-		transition: '0.3s',
+		backgroundColor: `${colors[color][0]}`,
+		boxShadow: `5px 5px 50px 5px ${colors[color][1]}`,
+		trasistion: '0.3s',
 	};
 
 	const front_back_right_left = {
 		height: `${length}px`,
 		transform: `translateY(${200 - length}px)`,
-		backgroundColor: `${colors[1][0]}`,
-		boxShadow: `5px 5px 50px 5px ${colors[1][1]}`,
-		transition: '0.3s',
+		backgroundColor: `${colors[color][0]}`,
+		boxShadow: `5px 5px 50px 5px ${colors[color][1]}`,
+		trasistion: '0.3s',
 	};
 
 	const quantity = {
 		position: 'relative',
 		top: 225,
-	};
-
-	const handleChange = (e) => {
-		console.log('handle change invoked')
 	};
 
 	return (
@@ -82,7 +75,7 @@ function Bar({ index, length }) {
 							style={inputStyle}
 							value={len}
 							className='input'
-							onChange={handleChange}
+							// onChange={handleChange}
 						/>
 					</div>
 				</div>
@@ -92,14 +85,6 @@ function Bar({ index, length }) {
 						style={front_back_right_left}
 					></div>
 				</div>
-				{/* <div className='quantity-nav'>
-					<div className='quantity-button quantity-up' style={quantity} onClick={increment}>
-						+
-					</div>
-					<div className='quantity-button quantity-down' style={quantity} onClick={decrement}>
-						-
-					</div>
-				</div> */}
 			</div>
 		</>
 	);

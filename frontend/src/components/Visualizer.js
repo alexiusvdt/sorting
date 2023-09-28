@@ -18,16 +18,29 @@ const Visualizer = ({ fetchedData }) => {
   //   }
   // }  
 
+  // have to pass down length because bar cares about values inside array not the entire array!
+  let color = 1;
+  let bars = init.map((value, index) => (
+    <Bar 
+      key={index}
+      index={index}
+      length={value}
+      color={color}
+      />
+    ));
+  
   // this needs to go in a loop, but still have its output readable by the div
   // maybe put in a useEffect so first loop renders init, then on play it can cycle through steps?
   // let length = steps[1].length
-  let bars = steps.map((index, length) => (
-    <Bar
-      key={index}
-      index={index}
-      length={length}
-    />
-  ));
+  // let bars = steps.map((index, length) => (
+  //   <Bar
+  //     key={index}
+  //     index={index}
+  //     length={length}
+  //   />
+  // ));
+
+
 
   // let playButton = (
   //   <button className='controller' onClick={start}>
