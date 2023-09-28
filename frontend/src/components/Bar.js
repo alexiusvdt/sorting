@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import './Bar.css';
 
-function Bar({ index, length, color }) {
+function Bar({ index, length }) {
 	const [len, setLen] = useState(length);
 
     useEffect(() => {
@@ -34,7 +34,7 @@ function Bar({ index, length, color }) {
 		transform: `translateY(${200 - length}px) rotateX(-90deg)`,
 		backgroundColor: `${colors[0][0]}`,
 		boxShadow: `5px 5px 50px 5px ${colors[0][1]}`,
-		trasistion: '0.3s',
+		transition: '0.3s',
 	};
 
 	const front_back_right_left = {
@@ -42,7 +42,7 @@ function Bar({ index, length, color }) {
 		transform: `translateY(${200 - length}px)`,
 		backgroundColor: `${colors[1][0]}`,
 		boxShadow: `5px 5px 50px 5px ${colors[1][1]}`,
-		trasistion: '0.3s',
+		transition: '0.3s',
 	};
 
 	const quantity = {
@@ -51,6 +51,7 @@ function Bar({ index, length, color }) {
 	};
 
 	const handleChange = (e) => {
+		console.log('handle change invoked')
 	};
 
 	return (

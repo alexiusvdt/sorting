@@ -6,30 +6,34 @@ import { FaArrowLeftLong as Backward } from 'react-icons/fa6';
 import { FaArrowRotateLeft as RotateLeft} from 'react-icons/fa6';
 
 const Visualizer = ({ fetchedData }) => {
-  console.log('fetchedData', fetchedData)
   const init = fetchedData.data[0]
-  const data = fetchedData.data[1]
+  const steps = fetchedData.data[1]
+  console.log('init data', init)
+  console.log('steps', steps)
 
-  const start = () => {
-    let i = 0
-    while (i < data.length) {
-      // render the bar
-    }
-  }  
+  // const start = () => {
+  //   let i = 0
+  //   while (i < data.length) {
+  //     // render the bars
+  //   }
+  // }  
 
-  let bars = data.map((value, index) => (
+  // this needs to go in a loop, but still have its output readable by the div
+  // maybe put in a useEffect so first loop renders init, then on play it can cycle through steps?
+  // let length = steps[1].length
+  let bars = steps.map((index, length) => (
     <Bar
       key={index}
       index={index}
-      length={value}
+      length={length}
     />
   ));
 
-  let playButton = (
-      <button className='controller' onClick={start}>
-        <Play />
-      </button>
-    );
+  // let playButton = (
+  //   <button className='controller' onClick={start}>
+  //     <Play />
+  //   </button>
+  // );
 
   return (
   <>
