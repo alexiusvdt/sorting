@@ -53,7 +53,7 @@ const Navbar = ({ updateParams }) => {
             <option value={"fast"}>2x</option>
             <option value={"sanic"}>100x</option>
           </select>
-        <button type="submit" id="submit">Visualize it!</button>
+        <button type="submit" id="submit">Get Data</button>
         </form>  
       </div>
     </div>
