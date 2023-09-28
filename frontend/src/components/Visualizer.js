@@ -11,12 +11,12 @@ const Visualizer = ({ fetchedData }) => {
   console.log('init data', init)
   console.log('steps', steps)
 
-  // const start = () => {
-  //   let i = 0
-  //   while (i < data.length) {
-  //     // render the bars
-  //   }
-  // }  
+  const start = () => {
+    let i = 0
+    while (i < steps.length) {
+      // render each subsequent arr
+    }
+  }  
 
   // have to pass down length because bar cares about values inside array not the entire array!
   let color = 1;
@@ -31,22 +31,12 @@ const Visualizer = ({ fetchedData }) => {
   
   // this needs to go in a loop, but still have its output readable by the div
   // maybe put in a useEffect so first loop renders init, then on play it can cycle through steps?
-  // let length = steps[1].length
-  // let bars = steps.map((index, length) => (
-  //   <Bar
-  //     key={index}
-  //     index={index}
-  //     length={length}
-  //   />
-  // ));
 
-
-
-  // let playButton = (
-  //   <button className='controller' onClick={start}>
-  //     <Play />
-  //   </button>
-  // );
+  let playButton = (
+    <button className='controller' onClick={start}>
+      <Play />
+    </button>
+  );
 
   return (
   <>

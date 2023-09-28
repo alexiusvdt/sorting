@@ -75,7 +75,6 @@ function Bar({ index, length, color, changeArray }) {
 							style={inputStyle}
 							value={len}
 							className='input'
-							// onChange={handleChange}
 						/>
 					</div>
 				</div>
