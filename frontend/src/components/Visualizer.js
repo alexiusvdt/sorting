@@ -1,53 +1,56 @@
 import React, { useEffect, useRef } from 'react';
-import * as d3 from 'd3';
+import Bar from './Bar'
+import { FaPlay as Play } from 'react-icons/fa';
+import { FaArrowRightLong as Forward } from 'react-icons/fa6';
+import { FaArrowLeftLong as Backward } from 'react-icons/fa6';
+import { FaArrowRotateLeft as RotateLeft} from 'react-icons/fa6';
 
 const Visualizer = ({ fetchedData }) => {
-  const svgRef = useRef();
+  console.log('fetchedData', fetchedData)
+  const init = fetchedData.data[0]
+  const data = fetchedData.data[1]
 
-  useEffect(() => {
-    const svg = d3.select(svgRef.current)
-      .attr("width", 800) // Set the width of the SVG
-      .attr("height", 500) // Set the height of the SVG
-      .style("margin-top", "25px");
+  const start = () => {
+    let i = 0
+    while (i < data.length) {
+      // render the bar
+    }
+  }  
 
-    const margin = { top: 10, right: 10, bottom: 30, left: 40 };
-    const width = 800 - margin.left - margin.right;
-    const height = 500 - margin.top - margin.bottom;
-    
-    // offset for labels
-    const g = svg.append("g")
-      .attr("transform", `translate(${margin.left},${margin.top})`);
-    
-    const xScale = d3.scaleBand()
-      .domain(fetchedData.data[0].map((_, i) => i))
-      .range([0, width])
-      .padding(0.1);
+  let bars = data.map((value, index) => (
+    <Bar
+      key={index}
+      index={index}
+      length={value}
+    />
+  ));
 
-    const yScale = d3.scaleLinear()
-      .domain([0, d3.max(fetchedData.data[0])])
-      .range([height, 0]);
+  let playButton = (
+      <button className='controller' onClick={start}>
+        <Play />
+      </button>
+    );
 
-    svg.selectAll("rect")
-      .data(fetchedData.data[0])
-      .enter().append("rect")
-      .attr("x", (d, i) => xScale(i))
-      .attr("y", d => yScale(d))
-      .attr("width", xScale.bandwidth())
-      .attr("height", d => height - yScale(d))
-      .attr("fill", "steelblue");
-      
-    svg.selectAll("text")
-      .data(fetchedData.data[0])
-      .enter().append("text")
-      .attr("x", (d, i) => xScale(i) + xScale.bandwidth() / 2)
-      .attr("y", height + 20) // Adjust y pos of labels
-      .attr("text-anchor", "middle")
-      .attr("fill", "black")
-      .text(d => d);
-}, [fetchedData.data]);
-
-  // show the result
-  return <svg ref={svgRef}></svg>;
-}
+  return (
+  <>
+    <div className='frame'>
+      <div className='barsDiv container card'>{bars}</div>
+    </div>
+    <div className='control-panel'>
+      <p>control buttons go here</p>
+      {/* <div className='control-buttons'>
+        <button className='controller' onClick={this.previousStep}>
+          <Backward />
+        </button>
+        {playButton}
+        <button className='controller' onClick={this.nextStep}>
+          <Forward />
+        </button> 
+      </div> */}
+    </div>
+    <div className='panel'></div>
+  </>
+    );
+  }
 
 export default Visualizer;
