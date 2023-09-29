@@ -8,6 +8,7 @@ import { FaPlay as Play } from 'react-icons/fa';
 const Visualizer = ({ fetchedData }) => {
   // useful for locking controls or conditional display of reset button (rotateleft)
   const [playing, setIsPlaying] = useState(false)
+  const [bars, setCurrentBars] = useState(null)
 
   // destructure data
   const init = fetchedData.data[0]
@@ -15,27 +16,41 @@ const Visualizer = ({ fetchedData }) => {
   console.log('init data', init)
   console.log('steps', steps)
 
+  useEffect(() => {
+    generateBars(init);
+  }, []);
+  
   const start = () => {
     let i = 0
     while (i < steps.length) {
       console.log("start executed", i)
-      // render each subsequent arr
+      // generateBars(steps)
       i++
     }
   }  
 
-  // bar has some static color lookup options
-  let color = 1;
-  // this needs to go in a loop, but still have its output readable by the div
-  // maybe put in a useEffect so first loop renders init, then on play it can cycle through steps?
-  let bars = init.map((value, index) => (
-    <Bar 
-      key={index}
-      index={index}
-      length={value}
-      color={color}
-      />
-    ));
+  function generateBars(array) {
+    let color = 1;
+    let bars = array.map((value, index) => (
+      <Bar 
+        key={index}
+        index={index}
+        length={value}
+        color={color}
+        />
+      ));
+      setCurrentBars(bars)
+  }
+
+  // let color = 1;
+  // let bars = init.map((value, index) => (
+  //   <Bar 
+  //     key={index}
+  //     index={index}
+  //     length={value}
+  //     color={color}
+  //     />
+  //   ));
   
   let playButton = (
     <button className='controller' onClick={start}>
@@ -45,7 +60,7 @@ const Visualizer = ({ fetchedData }) => {
 
   return (
   <>
-  {/* todo: needs to be limited to page width, currently will spill out like crazy with large arr sizes */}
+  {/* todo: div needs to be limited to page width, currently will spill out like crazy with large arr sizes */}
     <div className='frame'>
       <div className='barsDiv container card'>{bars}</div>
     </div>

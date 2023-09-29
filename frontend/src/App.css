@@ -17,6 +17,18 @@
   z-index: 10;
 }
 
+.form-div {
+
+}
+
+.label {
+	margin-left: 5px;
+}
+
+.submit-button {
+	margin-left: 10px;
+}
+
 .App-link {
   color: #61dafb;
 }
