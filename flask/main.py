@@ -17,7 +17,7 @@ api = Flask(__name__)
 def make_list(size):
   list = []
   for i in range(size):
-    list.append(random.randint(0,100))
+    list.append(random.randint(10,200))
   return list
 
 @api.route('/sort')

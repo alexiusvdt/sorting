@@ -63,7 +63,13 @@
 .control-buttons {
 	height: 4em;
 	width: 15em;
-	background-color: #eee;
+	/* background-color: #eee; */
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.control-panel {
 	display: flex;
 	justify-content: center;
 	align-items: center;

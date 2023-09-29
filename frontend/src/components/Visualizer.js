@@ -51,6 +51,7 @@ const Visualizer = ({ fetchedData }) => {
     </div>
     <div className='control-panel'>
       <div className='control-buttons'>
+        <h3>start the sort!</h3>
         {playButton}
       </div>
     </div>
