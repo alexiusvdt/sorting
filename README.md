@@ -32,6 +32,7 @@ Ratings are just my opinion on each algorithms' speed and efficiency. Not all so
 * flask 
 * axios
 * react-icons
+* jsdoc
 
 # Installation
 * clone this repository to your workspace

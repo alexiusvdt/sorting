@@ -1,8 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import Bar from './Bar'
 import { FaPlay as Play } from 'react-icons/fa';
-// import { FaArrowRightLong as Forward } from 'react-icons/fa6';
-// import { FaArrowLeftLong as Backward } from 'react-icons/fa6';
+import { FaStop as Stop } from 'react-icons/fa';
 import { FaArrowRotateLeft as Reset} from 'react-icons/fa6';
 
 const Visualizer = ({ fetchedData, speed }) => {
@@ -13,7 +12,7 @@ const Visualizer = ({ fetchedData, speed }) => {
 
   const init = fetchedData.data[0]
   const steps = fetchedData.data[1]
-  console.log('init data', init)
+  // console.log('init data', init)
   // console.log('steps', steps)
   // console.log('speed', speed)
 
@@ -23,6 +22,12 @@ const Visualizer = ({ fetchedData, speed }) => {
     // warning on this react-hooks/exhaustive-deps ... not sure if concern or not?
   }, []);
   
+  /**
+  * @function
+  * calls @generateBars on each index of steps
+  * sets iterator state for display to user
+  * calls @sleep so there's visible delay between bar renders
+  */
   const start = async () => {
     let i = 0
 
@@ -35,10 +40,21 @@ const Visualizer = ({ fetchedData, speed }) => {
     }
   }  
 
+  /**
+  * @function
+  * returns a promise that resolves the timeout
+  */
   function sleep(ms) {
     return new Promise(resolve => setTimeout(resolve, ms));
   }
 
+  /**
+  * @function
+  * @param {array} 
+  * takes array and renders the sub-elements as bars of given color
+  * sets the currentBar state for actual display to user
+  * useEffect calls this on init render
+  */
   async function generateBars(array) {
     let color = 1;
 
@@ -58,9 +74,17 @@ const Visualizer = ({ fetchedData, speed }) => {
       <Play />
     </button>
   );
-
+  
+  /**
+  * @function
+  * resets state
+  * initializes initial state again
+  * todo: !!currently doesn't stop the while loop!!
+  */
   const reset = () => {
-    // do something to re-render init array
+    setCurrentBars(null)
+    setIteration(null)
+    generateBars(init)
   }
   
   const resetButton = (
@@ -75,12 +99,10 @@ const Visualizer = ({ fetchedData, speed }) => {
 
   const stopButton = (
     <button className='controller' onClick={stop}>
-      {/* <Stop /> */}
+      <Stop />
     </button>
   )
   
-  
-
   return (
   <>
   {/* todo: div needs to be limited to page width, currently will spill out like crazy with large arr sizes */}
@@ -95,7 +117,7 @@ const Visualizer = ({ fetchedData, speed }) => {
         <p>reset sort state</p>
         {resetButton}
         <p>stop sort</p>
-        {/* {stopButton} */}
+        {stopButton}
       </div>
     </div>
     <div className='panel'></div>
