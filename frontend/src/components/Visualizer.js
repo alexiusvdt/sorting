@@ -6,15 +6,14 @@ import { FaPlay as Play } from 'react-icons/fa';
 // import { FaArrowRotateLeft as RotateLeft} from 'react-icons/fa6';
 
 const Visualizer = ({ fetchedData }) => {
-  // useful for locking controls or conditional display of reset button (rotateleft)
-  const [playing, setIsPlaying] = useState(false)
+  // const [playing, setIsPlaying] = useState(false) <- todo: replay controller/button locking tool?
   const [bars, setCurrentBars] = useState(null)
 
   // destructure data
   const init = fetchedData.data[0]
   const steps = fetchedData.data[1]
-  console.log('init data', init)
-  console.log('steps', steps)
+  // console.log('init data', init)
+  // console.log('steps', steps)
 
   useEffect(() => {
     generateBars(init);
@@ -24,7 +23,7 @@ const Visualizer = ({ fetchedData }) => {
     let i = 0
     while (i < steps.length) {
       console.log("start executed", i)
-      // generateBars(steps)
+      generateBars(steps[i])
       i++
     }
   }  
@@ -41,18 +40,8 @@ const Visualizer = ({ fetchedData }) => {
       ));
       setCurrentBars(bars)
   }
-
-  // let color = 1;
-  // let bars = init.map((value, index) => (
-  //   <Bar 
-  //     key={index}
-  //     index={index}
-  //     length={value}
-  //     color={color}
-  //     />
-  //   ));
   
-  let playButton = (
+  const playButton = (
     <button className='controller' onClick={start}>
       <Play />
     </button>
