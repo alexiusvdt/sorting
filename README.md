@@ -5,7 +5,7 @@ Sorting algorithms are used to put elements of a list into an order, either nume
 
 While perhaps not the most straightforward implementation for this project, I wanted to demonstrate knowledge of distributed systems, sorting algorithms, API usage, and interfaces/abstract Classes.
 
-Ratings are just personal preferences (though I wish I could rate bogo sort higher for the sheer hilarity of it):
+Ratings are just my opinion on each algorithms' speed and efficiency. Not all sorts below are currently implemented.
 
 | Algorithm       | Complexity     | Rating      |
 |-----------------|---------------|--------------|
@@ -18,31 +18,29 @@ Ratings are just personal preferences (though I wish I could rate bogo sort high
 | Counting sort   | O(n + k)      | 4/5          |
 | Radix sort      | O(n * k)      | 4/5          |
 | Bucket sort     | O(n + k)      | 4/5          |
-| Bogo sort       | O((n+1)!)     | 1/5          |
+| Bogo sort       | O((n+1)!)     | 0/5          |
 | Miracle sort    | O(∞)          | 0/5          |
 
 
-
-# Goals/Flow
+# Flow
   * an API request is sent to the `sort` endpoint
   * the backend instantiates a TypeSort class and performs the work
   * the backend returns iterative steps to the react application for presentation
-  * users can view various sorting algorithms at work
-  * users can sort by ascending or descending
-  * add sounds and playback features like pause and stepping through
-
-# Technologies
-* Flask 
-* PyGame (for practice displaying sorts, will be removed from final iteration)
+  * users can play the algorithm sorting steps
+  
+# Technologies / Frameworks Used
+* flask 
 * axios
-* material design
-* recharts
+* react-icons
 
 # Installation
-* clone this repository
+* clone this repository to your workspace
 * navigate to the `flask` directory in a command line interface
-* run `.\env\Scripts\activate` to activate the virtual environment
-* cd into the `flask` directory
+* activate the virtual environment:
+  * if on Windows:
+    * `.\env\Scripts\activate`
+  * if Mac/Linux (bash shell):
+    * `source .venv/bin/activate`
 * run flask with `flask run` to start in dev mode
 * in a second terminal window, navigate to `frontend` directory
 * run the react frontend with `npm run start`
@@ -50,9 +48,16 @@ Ratings are just personal preferences (though I wish I could rate bogo sort high
 # Thanks
 * Tech with Tim (youtube) for a jumping-off point and helpful pygame tutorial
 * Mike C & Billy F for the guidance and experience
+* Susuwatari for her endless rubber duck debugging help 🐱
 
 # Bugs / Issues
 * It's not finished yet!
+
+# ToDo / Improvements
+* Improve playback controls
+* Increase visual clarity of swaps/passes made
+* add a warning/confirmation before submitting bogo request (long response times)
+* add descending sort options
 
 # License
 **MIT License**

@@ -4,7 +4,7 @@ const Navbar = ({ updateParams }) => {
   const [formData, setFormData] = useState({
     selectedAlgo: "bubble",
     selectedSize: 10,
-    selectedSpeed: "std"
+    selectedSpeed: 1000
     });
 
   const handleSubmit = (e) => {
@@ -44,15 +44,16 @@ const Navbar = ({ updateParams }) => {
             <option value={"tbd"}>Heap Sort</option>
           </select>
           <label className="label">Speed:</label>
+          {/* todo: move speed select out of navbar. it isn't sent in the request and should be changable without re-requesting data */}
           <select
             value={formData.selectedSpeed}
-            defaultValue={"std"}
+            defaultValue={1000}
             onChange={(e) => setFormData({ ...formData, selectedSpeed: e.target.value })}
             >
-            <option value={"half"}>0.5x</option>
-            <option value={"std"}>1x</option>
-            <option value={"fast"}>2x</option>
-            <option value={"sanic"}>100x</option>
+            <option value={2000}>slow</option>
+            <option value={1000}>standard</option>
+            <option value={500}>fast</option>
+            <option value={100}>faster</option>
           </select>
         <button className="submit-button" type="submit" id="submit">Get Data</button>
         </form>  
