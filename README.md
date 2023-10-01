@@ -13,13 +13,14 @@ Ratings are just my opinion on each algorithms' speed and efficiency. Struckthro
 | Bubble sort     | O(n^2)        | 2/5          |
 | Insertion sort  | O(n^2)        | 3/5          |
 | Bogo sort       | O((n+1)!)     | 0/5          |
-~~| Merge sort      | O(n log n)    | 5/5          |~~
-~~| Quick sort      | O(n log n)    | 5/5          |~~
-~~| Heap sort       | O(n log n)    | 4/5          |~~
-~~| Counting sort   | O(n + k)      | 4/5          |~~
-~~| Radix sort      | O(n * k)      | 4/5          |~~
-~~| Bucket sort     | O(n + k)      | 4/5          |~~
-~~| Miracle sort    | O(∞)          | 0/5          |~~
+| Not yet implemented| --- | --- |
+| Merge sort      | O(n log n)    | 5/5          |
+| Quick sort      | O(n log n)    | 5/5          |
+| Heap sort       | O(n log n)    | 4/5          |
+| Counting sort   | O(n + k)      | 4/5          |
+| Radix sort      | O(n * k)      | 4/5          |
+| Bucket sort     | O(n + k)      | 4/5          |
+| Miracle sort    | O(∞)          | 0/5          |
 
 
 # Flow
