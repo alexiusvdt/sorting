@@ -37,6 +37,8 @@ Ratings are just my opinion on each algorithms' speed and efficiency. Struckthro
 * pipreqs
 
 # Installation
+* Note: This application requires python version **3.10** to function
+
 * clone this repository to your workspace
 * navigate to the `flask` directory in a command line interface
 * create the virtual environment(venv) by entering `python -m venv .venv`. 

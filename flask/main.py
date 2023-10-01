@@ -2,6 +2,7 @@ from flask import Flask, jsonify
 from flask import request
 import random
 import copy
+import sys
 # import json
 
 import sorts.sort
@@ -11,6 +12,9 @@ import sorts.selection
 import sorts.bogo
 import sorts.merge
 # do aliasing on these so you dont have to type out the full thing
+# catch old python versions
+if sys.version_info[0:2] != (3,10):
+  raise Exception (f'Python version 3.10 required, you are running "{sys.version}". Please update and try again')
 
 api = Flask(__name__)
 
