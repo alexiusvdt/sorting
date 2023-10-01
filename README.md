@@ -39,12 +39,14 @@ Ratings are just my opinion on each algorithms' speed and efficiency. Struckthro
 # Installation
 * clone this repository to your workspace
 * navigate to the `flask` directory in a command line interface
-* reproduce the virtual environment by running `pip install -r requirements.txt`
+* create the virtual environment(venv) by entering `python -m venv .venv`. 
+  * Note: `.venv` is the name for the resulting environment. You may name this however you wish, just replace `.venv` with your desired name in these commands.
 * activate the virtual environment:
   * if on Windows:
-    * `.\env\Scripts\activate`
+    * `.\.venv\Scripts\activate`
   * if Mac/Linux (bash shell):
-    * `source .env/bin/activate`
+    * `source .venv/bin/activate`
+* install necessary packages to the venv: `pip install -r requirements.txt`
 * run flask with `flask run` to start in dev mode
 * in a second terminal window, navigate to `frontend` directory
 * run the react frontend with `npm run start`
