@@ -5,21 +5,21 @@ Sorting algorithms are used to put elements of a list into an order, either nume
 
 While perhaps not the most straightforward implementation for this project, I wanted to demonstrate knowledge of distributed systems, sorting algorithms, API usage, and interfaces/abstract Classes.
 
-Ratings are just my opinion on each algorithms' speed and efficiency. Not all sorts below are currently implemented.
+Ratings are just my opinion on each algorithms' speed and efficiency. Struckthrough items not yet implemented.
 
 | Algorithm       | Complexity     | Rating      |
 |-----------------|---------------|--------------|
 | Selection sort  | O(n^2)        | 2/5          |
 | Bubble sort     | O(n^2)        | 2/5          |
 | Insertion sort  | O(n^2)        | 3/5          |
-| Merge sort      | O(n log n)    | 5/5          |
-| Quick sort      | O(n log n)    | 5/5          |
-| Heap sort       | O(n log n)    | 4/5          |
-| Counting sort   | O(n + k)      | 4/5          |
-| Radix sort      | O(n * k)      | 4/5          |
-| Bucket sort     | O(n + k)      | 4/5          |
 | Bogo sort       | O((n+1)!)     | 0/5          |
-| Miracle sort    | O(∞)          | 0/5          |
+~~| Merge sort      | O(n log n)    | 5/5          |~~
+~~| Quick sort      | O(n log n)    | 5/5          |~~
+~~| Heap sort       | O(n log n)    | 4/5          |~~
+~~| Counting sort   | O(n + k)      | 4/5          |~~
+~~| Radix sort      | O(n * k)      | 4/5          |~~
+~~| Bucket sort     | O(n + k)      | 4/5          |~~
+~~| Miracle sort    | O(∞)          | 0/5          |~~
 
 
 # Flow
@@ -33,15 +33,17 @@ Ratings are just my opinion on each algorithms' speed and efficiency. Not all so
 * axios
 * react-icons
 * jsdoc
+* pipreqs
 
 # Installation
 * clone this repository to your workspace
 * navigate to the `flask` directory in a command line interface
+* reproduce the virtual environment by running `pip install -r requirements.txt`
 * activate the virtual environment:
   * if on Windows:
     * `.\env\Scripts\activate`
   * if Mac/Linux (bash shell):
-    * `source .venv/bin/activate`
+    * `source .env/bin/activate`
 * run flask with `flask run` to start in dev mode
 * in a second terminal window, navigate to `frontend` directory
 * run the react frontend with `npm run start`
