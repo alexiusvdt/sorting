@@ -1,11 +1,14 @@
 ## Sorting Algorithms
-This project is a **work in progress** so pardon the dust.
+![GitHub commit activity (main)](https://img.shields.io/github/commit-activity/w/alexiusvdt/sorting)![GitHub last commit (by committer)](https://img.shields.io/github/last-commit/alexiusvdt/sorting)![Shields.io](https://img.shields.io/badge/Version-0.1-green.svg?style=flat)
 
-Sorting algorithms are used to put elements of a list into an order, either numeric or lexicographical. In this application, I hope to show various sorting algorithms and their strengths or weaknesses. 
+![Python](https://img.shields.io/badge/Python-3776AB?style=for-the-badge&logo=python&logoColor=white)
+![Javascript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=JavaScript&logoColor=white)
+![Flask](https://img.shields.io/badge/Flask-000000?style=for-the-badge&logo=flask&logoColor=white)
+![Node](https://img.shields.io/badge/Node.js-43853D?style=for-the-badge&logo=node.js&logoColor=white)
+![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 
-While perhaps not the most straightforward implementation for this project, I wanted to demonstrate knowledge of distributed systems, sorting algorithms, API usage, and interfaces/abstract Classes.
-
-Ratings are just my opinion on each algorithms' speed and efficiency. Struckthrough items not yet implemented.
+# Description
+Sorting algorithms are used to put elements of a list into an order, either numeric or lexicographical. In this application, I hope to show various sorting algorithms and their strengths or weaknesses. While perhaps not the most straightforward implementation for this project, I wanted to demonstrate knowledge of distributed systems, sorting algorithms, API usage, and interfaces/abstract Classes. Ratings are just my opinion on each algorithms' speed and efficiency. Struckthrough items not yet implemented.
 
 | Algorithm       | Complexity     | Rating      |
 |-----------------|---------------|--------------|
@@ -13,31 +16,9 @@ Ratings are just my opinion on each algorithms' speed and efficiency. Struckthro
 | Bubble sort     | O(n^2)        | 2/5          |
 | Insertion sort  | O(n^2)        | 3/5          |
 | Bogo sort       | O((n+1)!)     | 0/5          |
-| Not yet implemented| --- | --- |
-| Merge sort      | O(n log n)    | 5/5          |
-| Quick sort      | O(n log n)    | 5/5          |
-| Heap sort       | O(n log n)    | 4/5          |
-| Counting sort   | O(n + k)      | 4/5          |
-| Radix sort      | O(n * k)      | 4/5          |
-| Bucket sort     | O(n + k)      | 4/5          |
-| Miracle sort    | O(∞)          | 0/5          |
-
-
-# Flow
-  * an API request is sent to the `sort` endpoint
-  * the backend instantiates a TypeSort class and performs the work
-  * the backend returns iterative steps to the react application for presentation
-  * users can play the algorithm sorting steps
-  
-# Technologies / Frameworks Used
-* flask 
-* axios
-* react-icons
-* jsdoc
-* pipreqs
 
 # Installation
-* Note: This application requires python version **3.10** to function
+Note: This application currently requires python version **3.10** to function
 
 * clone this repository to your workspace
 * navigate to the `flask` directory in a command line interface
