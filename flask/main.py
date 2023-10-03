@@ -13,7 +13,7 @@ import sorts.bogo
 import sorts.merge
 # do aliasing on these so you dont have to type out the full thing
 # catch old python versions
-if sys.version_info[0:2] != (3,10):
+if sys.version_info[0:2] < (3,10):
   raise Exception (f'Python version 3.10 required, you are running "{sys.version}". Please update and try again')
 
 api = Flask(__name__)
@@ -31,7 +31,7 @@ def get_sort_obj():
   size = int(size)
   list = make_list(size)
   
-  # yes this could be DRY-er, but that's for later
+  # yes this could be DRY-er, but that's for later. Need to remove switch case for early version py compatibility
   match func:
     case "bubble":
       output = {

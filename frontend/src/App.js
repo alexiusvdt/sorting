@@ -51,12 +51,10 @@ const App = () => {
     <Navbar 
       updateParams = {updateParams}
     />
-    {/* if fetchedData null, don't render this component */}
+    {/* not rerendering on subsequent fetches */}
     {fetchedData !== null &&
       <Visualizer 
-        fetchedData = {fetchedData}
-        speed = {requestParams.selectedSpeed}
-        // need to pass down speed to modify delay timer
+        fetchedData = {fetchedData}        
       />
     }
   </div>

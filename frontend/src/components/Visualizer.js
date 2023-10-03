@@ -4,17 +4,15 @@ import { FaPlay as Play } from 'react-icons/fa';
 import { FaStop as Stop } from 'react-icons/fa';
 import { FaArrowRotateLeft as Reset} from 'react-icons/fa6';
 
-const Visualizer = ({ fetchedData, speed }) => {
+const Visualizer = ({ fetchedData }) => {
   // const [playing, setIsPlaying] = useState(false) <- todo: replay controller/button locking tool?
   const [bars, setCurrentBars] = useState(null)
   const [iteration, setIteration] = useState(null)
   const [delay, setDelay] = useState(null)
+  const [speed, setSpeed] = useState(500)
 
   const init = fetchedData.data[0]
   const steps = fetchedData.data[1]
-  // console.log('init data', init)
-  // console.log('steps', steps)
-  // console.log('speed', speed)
 
   useEffect(() => {
     setDelay(speed)
@@ -118,6 +116,15 @@ const Visualizer = ({ fetchedData, speed }) => {
         {resetButton}
         <p>stop sort</p>
         {stopButton}
+        <label className="label">Speed:</label>
+          <select
+            defaultValue={500}
+            onChange={(e) => setSpeed(e.target.value)}
+            >
+            <option value={750}>slow</option>
+            <option value={500}>standard</option>
+            <option value={200}>fast</option>
+          </select>
       </div>
     </div>
     <div className='panel'></div>
