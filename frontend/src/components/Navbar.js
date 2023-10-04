@@ -1,41 +1,30 @@
 import React, { useState } from "react";
 
 const Navbar = ({ updateParams }) => {
-  const [loading, setLoading] = useState(false)
-  const [formData, setFormData] = useState({
-    selectedAlgo: "bubble",
-    selectedSize: 10,
-    selectedSpeed: 1000
-    });
+  const [formData, setFormData] = useState({});
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    // checkValid();
     if (formData.selectedAlgo === 'bogo'){
       const confirmed = window.confirm('Bogo sort is very inefficient and will take a long time to return a response. Are you sure you wish to continue with this request? ')
       if (!confirmed) {
         return;
       }
     }
-    setLoading(true)
-    // console.log('formdata', formData);
-    setLoading(false)
     updateParams(formData);
+    console.log('formdata', formData);
   };
 
   return (
     <div className="navbar" id="navbar">
-          {loading ? (
-            <div className="loader-container">
-                <div className="spinner"></div>
-            </div>
-          ) : (
       <div className="form-div">
         <form onSubmit={handleSubmit}>
           <label className="label">Array Size: </label>
           <select
+            id="size"
             value={formData.selectedSize}
             defaultValue={10}
-            // className="select"
             onChange={(e) => setFormData({ ...formData, selectedSize: e.target.value })}
           >
             <option value={10}>10</option>
@@ -45,8 +34,9 @@ const Navbar = ({ updateParams }) => {
           </select>
           <label className="label">Algorithm:</label>
           <select
-            value={formData.selectedAlgo}
+            id="algo"
             defaultValue={"bubble"}
+            value={formData.selectedAlgo}
             onChange={(e) => setFormData({ ...formData, selectedAlgo: e.target.value })}
           >
             <option value={"bubble"}>Bubble Sort</option>
@@ -59,7 +49,6 @@ const Navbar = ({ updateParams }) => {
         <button className="submit-button" type="submit" id="submit">Get Data</button>
         </form>  
       </div>
-          )}
     </div>
   );
 }
