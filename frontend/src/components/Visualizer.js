@@ -4,13 +4,15 @@ import { FaPlay as Play } from 'react-icons/fa';
 import { FaStop as Stop } from 'react-icons/fa';
 import { FaArrowRotateLeft as Reset} from 'react-icons/fa6';
 
-const Visualizer = ({ fetchedData }) => {
-  // const [playing, setIsPlaying] = useState(false) <- todo: replay controller/button locking tool?
+const Visualizer = ({ fetchedData, requestParams }) => {
   const [bars, setCurrentBars] = useState(null)
   const [iteration, setIteration] = useState(null)
   const [delay, setDelay] = useState(null)
   const [speed, setSpeed] = useState(500)
 
+  console.log("fetchedData", fetchedData)
+  console.log("requestparams", requestParams)
+  const sort = requestParams.selectedAlgo.charAt(0).toUpperCase() + requestParams.selectedAlgo.slice(1)
   const init = fetchedData.data[0]
   const steps = fetchedData.data[1]
 
@@ -107,7 +109,10 @@ const Visualizer = ({ fetchedData }) => {
     <div className='frame'>
       <div className='barsDiv container card'>{bars}</div>
     </div>
-    <div><p>Steps taken: {iteration}</p></div>
+    <div>
+      <p>Sort type: {sort}</p>
+      <p>Steps taken: {iteration}</p>
+    </div>
     <div className='control-panel'>
       <div className='control-buttons'>
         <p>start the sort!</p>

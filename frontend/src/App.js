@@ -63,7 +63,8 @@ const App = () => {
         updateParams = {updateParams}
       />
       {fetchedData !== null &&
-        <Visualizer 
+        <Visualizer
+          requestParams = {requestParams} 
           fetchedData = {fetchedData}        
         />
       }
