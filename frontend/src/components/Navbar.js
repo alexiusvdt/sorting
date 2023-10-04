@@ -1,8 +1,16 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const Navbar = ({ updateParams }) => {
-  const [formData, setFormData] = useState({});
+  const [formData, setFormData] = useState({})
 
+  // default state options
+  useEffect(() => {
+    setFormData({
+      selectedAlgo: "bubble",
+      selectedSize: 10,
+      });
+  }, []);
+    
   const handleSubmit = (e) => {
     e.preventDefault();
     // checkValid();
