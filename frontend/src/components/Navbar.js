@@ -32,7 +32,7 @@ const Navbar = ({ updateParams }) => {
           <select
             id="size"
             value={formData.selectedSize}
-            defaultValue={10}
+            defaultValue={formData.selectedSize}
             onChange={(e) => setFormData({ ...formData, selectedSize: e.target.value })}
           >
             <option value={10}>10</option>
@@ -43,7 +43,7 @@ const Navbar = ({ updateParams }) => {
           <label className="label">Algorithm:</label>
           <select
             id="algo"
-            defaultValue={"bubble"}
+            defaultValue={formData.selectedAlgo}
             value={formData.selectedAlgo}
             onChange={(e) => setFormData({ ...formData, selectedAlgo: e.target.value })}
           >

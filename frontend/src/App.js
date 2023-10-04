@@ -3,6 +3,7 @@ import axios from "axios";
 import './App.css';
 import Navbar from './components/Navbar';
 import Visualizer from './components/Visualizer';
+import ToDoList from './components/toDoList';
 
 const App = () => {
 
@@ -53,6 +54,7 @@ const App = () => {
     <div className="App">
       {loading ? (
       <div className="loader-container">
+          <ToDoList />
           <div className="spinner"></div>
       </div>
       ) : (
@@ -60,7 +62,6 @@ const App = () => {
       <Navbar 
         updateParams = {updateParams}
       />
-      {/* not rerendering on subsequent fetches */}
       {fetchedData !== null &&
         <Visualizer 
           fetchedData = {fetchedData}        

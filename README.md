@@ -8,7 +8,7 @@
 ![React](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)
 
 # Description
-Sorting algorithms are used to put elements of a list into an order, either numeric or lexicographical. In this application, I hope to show various sorting algorithms and their strengths or weaknesses. While perhaps not the most straightforward implementation for this project, I wanted to demonstrate knowledge of distributed systems, sorting algorithms, API usage, and interfaces/abstract Classes. Ratings are just my opinion on each algorithms' speed and efficiency. Struckthrough items not yet implemented.
+Sorting algorithms are used to put elements of a list into an order, either numeric or lexicographical. In this application, I hope to show various sorting algorithms and their strengths or weaknesses. While perhaps not the most straightforward implementation for this project, I wanted to demonstrate knowledge of distributed systems, sorting algorithms, API usage, and interfaces/abstract Classes. Ratings are just my opinion on each algorithms' speed and efficiency. 
 
 | Algorithm       | Complexity     | Rating      |
 |-----------------|---------------|--------------|
