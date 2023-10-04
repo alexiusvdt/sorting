@@ -8,6 +8,7 @@ const App = () => {
 
   const [fetchedData, setFetchedData] = useState(null)
   const [requestParams, setRequestParams] = useState({})
+  const [loading, setLoading] = useState(false)
   
   /**
   * @function
@@ -26,6 +27,7 @@ const App = () => {
  */
   const fetchData = (requestParams) => {
     // console.log('starting fetch')
+    setLoading(true)
     axios({
       method: "GET",
       url:"/sort",
@@ -38,6 +40,7 @@ const App = () => {
     console.log(response)
     const data = response.data
     setFetchedData(({data}))
+    setLoading(false)
   }).catch((error) => {
     if (error.response) {
       console.log(error.response)
@@ -48,15 +51,23 @@ const App = () => {
 
   return(
     <div className="App">
-    <Navbar 
-      updateParams = {updateParams}
-    />
-    {/* not rerendering on subsequent fetches */}
-    {fetchedData !== null &&
-      <Visualizer 
-        fetchedData = {fetchedData}        
+      {loading ? (
+      <div className="loader-container">
+          <div className="spinner"></div>
+      </div>
+      ) : (
+        <div className="wrapper">
+      <Navbar 
+        updateParams = {updateParams}
       />
-    }
+      {/* not rerendering on subsequent fetches */}
+      {fetchedData !== null &&
+        <Visualizer 
+          fetchedData = {fetchedData}        
+        />
+      }
+      </div>
+    )}
   </div>
   )
 }

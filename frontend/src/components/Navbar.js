@@ -18,33 +18,17 @@ const Navbar = ({ updateParams }) => {
     }
     setLoading(true)
     // console.log('formdata', formData);
-    updateParams(formData);
     setLoading(false)
+    updateParams(formData);
   };
 
   return (
     <div className="navbar" id="navbar">
-      {loading && (
-        <div className="spinner">
-          <svg
-            xmlns="http://www.w3.org/2000/svg"
-            width="100vw"
-            height="100vh"
-            viewBox="0 0 100 100"
-            z={10}
-          >
-            <circle
-              cx="50"
-              cy="50"
-              r="45"
-              fill="none"
-              stroke="#000000"
-              strokeWidth="4"
-            />
-          </svg>
-        </div>
-      )}
-
+          {loading ? (
+            <div className="loader-container">
+                <div className="spinner"></div>
+            </div>
+          ) : (
       <div className="form-div">
         <form onSubmit={handleSubmit}>
           <label className="label">Array Size: </label>
@@ -75,6 +59,7 @@ const Navbar = ({ updateParams }) => {
         <button className="submit-button" type="submit" id="submit">Get Data</button>
         </form>  
       </div>
+          )}
     </div>
   );
 }
