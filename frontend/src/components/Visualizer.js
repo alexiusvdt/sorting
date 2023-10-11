@@ -9,9 +9,7 @@ const Visualizer = ({ fetchedData, requestParams }) => {
   const [iteration, setIteration] = useState(null)
   const [delay, setDelay] = useState(null)
   const [speed, setSpeed] = useState(500)
-
-  console.log("fetchedData", fetchedData)
-  console.log("requestparams", requestParams)
+  
   const sort = requestParams.selectedAlgo.charAt(0).toUpperCase() + requestParams.selectedAlgo.slice(1)
   const init = fetchedData.data[0]
   const steps = fetchedData.data[1]
