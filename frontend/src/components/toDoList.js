@@ -7,7 +7,7 @@ const ToDoList = () => {
   useEffect(() => {
     const interval = setInterval(() => {
         setTextIdx((Math.floor(Math.random() * phrases.length)));
-    }, 5000);
+    }, 4000);
 
     //Clearing the interval
     return () => clearInterval(interval);

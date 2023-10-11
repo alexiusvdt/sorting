@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import Bar from './Bar'
 import { FaPlay as Play } from 'react-icons/fa';
 import { FaStop as Stop } from 'react-icons/fa';
+import { FaPause as Pause } from 'react-icons/fa';
 import { FaArrowRotateLeft as Reset} from 'react-icons/fa6';
 
 const Visualizer = ({ fetchedData, requestParams }) => {
@@ -9,6 +10,7 @@ const Visualizer = ({ fetchedData, requestParams }) => {
   const [iteration, setIteration] = useState(null)
   const [delay, setDelay] = useState(null)
   const [speed, setSpeed] = useState(500)
+  const [pause, setPause] = useState(false)
   
   const sort = requestParams.selectedAlgo.charAt(0).toUpperCase() + requestParams.selectedAlgo.slice(1)
   const init = fetchedData.data[0]
@@ -25,11 +27,16 @@ const Visualizer = ({ fetchedData, requestParams }) => {
   * calls @generateBars on each index of steps
   * sets iterator state for display to user
   * calls @sleep so there's visible delay between bar renders
+  * checks pause at top of each loop
   */
   const start = async () => {
     let i = 0
 
     while (i < steps.length) {
+      if (pause === true) {
+        break
+      }
+
       console.log("start executed", i)
       generateBars(steps[i])
       setIteration(i)
@@ -91,19 +98,41 @@ const Visualizer = ({ fetchedData, requestParams }) => {
     </button>
   )
 
-  const stop = () => {
-    // do something to stop the loop
+  const doPause = () => {
+    setPause(true)
   }
 
-  const stopButton = (
-    <button className='controller' onClick={stop}>
-      <Stop />
+  const pauseButton = (
+    <button className='controller' onClick={doPause}>
+      <Pause />
     </button>
   )
   
+  const doStop = () => {
+    setPause(true)
+    // reset
+    setPause(false)
+
+  }
+
+  const stopButton = (
+    <button className='controller' onClick={doStop}>
+      <Stop />
+    </button>
+  )
+
+  const resume  = () => {
+    // do something
+  }
+
+  const resumeButton = (
+    <button className='controller' onClick={resume}>
+      <Play />
+    </button>    
+  )
+
   return (
   <>
-  {/* todo: div needs to be limited to page width, currently will spill out like crazy with large arr sizes */}
     <div className='frame'>
       <div className='barsDiv container card'>{bars}</div>
     </div>
@@ -117,8 +146,8 @@ const Visualizer = ({ fetchedData, requestParams }) => {
         {playButton}
         <p>reset sort state</p>
         {resetButton}
-        <p>stop sort</p>
-        {stopButton}
+        <p>pause/resume sort</p>
+        {/* {{pause} ? {resumeButton} : {pauseButton}} */}
         <label className="label">Speed:</label>
           <select
             defaultValue={500}
