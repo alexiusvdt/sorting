@@ -18,8 +18,6 @@ Sorting algorithms are used to put elements of a list into an order, either nume
 | Bogo sort       | O((n+1)!)     | 0/5          |
 
 # Installation
-Note: This application currently requires python version **3.10** to function
-
 * clone this repository to your workspace
 * navigate to the `flask` directory in a command line interface
 * create the virtual environment(venv) by entering `python -m venv .venv`. 

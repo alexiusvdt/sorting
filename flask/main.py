@@ -11,14 +11,11 @@ import sorts.insert
 import sorts.selection
 import sorts.bogo
 import sorts.merge
-# do aliasing on these so you dont have to type out the full thing
-# catch old python versions
-if sys.version_info[0:2] < (3,10):
-  raise Exception (f'Python version 3.10 required, you are running "{sys.version}". Please update and try again')
 
 api = Flask(__name__)
 
 def make_list(size):
+  '''creates a list of given size'''
   list = []
   for i in range(size):
     list.append(random.randint(10,200))
@@ -26,65 +23,51 @@ def make_list(size):
 
 @api.route('/sort')
 def get_sort_obj():
+  '''set up return object based on requested sort'''
   func = request.args.get('func')
   size = request.args.get('size')
   size = int(size)
   list = make_list(size)
-  
-  # yes this could be DRY-er, but that's for later. Need to remove switch case for early version py compatibility
-  match func:
-    case "bubble":
-      output = {
+  output = {
         0 : copy.deepcopy(list)
       }
+  
+  # this could probably be DRY-d out more
+  if func == "bubble":
       bubble = sorts.bubble.BubbleSort(func, list)
       sorted = bubble.do_sort()
       output[1] = sorted
 
       return output
-
-    case "insert":
-      output = {
-        0 : copy.deepcopy(list)
-      }
+  elif func == "insert":
       insert = sorts.insert.InsertSort(func, list)
       sorted = insert.do_sort()
       output[1] = sorted
 
       return output
-
-    case "selection":
-      output = {
-        0 : copy.deepcopy(list)
-      }
+  elif func == "selection":
       selection = sorts.selection.SelectionSort(func, list)
       sorted = selection.do_sort()
       output[1] = sorted
 
       return output
     
-    case "merge":
-      output = {
-        0 : copy.deepcopy(list)
-      }
+    # needs fixing
+  elif func == "merge":
+      # currently not working
       merge = sorts.merge.MergeSort(func, list)
       sorted = merge.do_sort()
       output[1] = sorted
 
-      return output
-    
-    case "bogo":
-      output = {
-        0 : copy.deepcopy(list)
-      }
+      return output   
+  elif func == "bogo":
       bogo = sorts.bogo.BogoSort(func, list)
       sorted = bogo.do_sort()
       output[1] = sorted
 
       return output
-
-    case _:
-      response_body = {
-        "you": " dun goofed"
+  else:
+      output = {
+        "you": " dun goofed up"
       }
-      return response_body
+      return output

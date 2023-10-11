@@ -51,8 +51,8 @@ const Navbar = ({ updateParams }) => {
             <option value={"insert"}>Insert Sort</option>
             <option value={"bogo"}>Bogo Sort</option>
             <option value={"selection"}>Selection Sort</option>
-            <option value={"merge"}>Merge Sort</option>
-            <option value={"tbd"}>Heap Sort</option>
+            {/* <option value={"merge"}>Merge Sort</option> */}
+            {/* <option value={"tbd"}>Heap Sort</option> */}
           </select>
         <button className="submit-button" type="submit" id="submit">Get Data</button>
         </form>  
