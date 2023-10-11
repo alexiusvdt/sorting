@@ -109,7 +109,7 @@ const Visualizer = ({ fetchedData, requestParams }) => {
     </div>
     <div>
       <p>Sort type: {sort}</p>
-      <p>Steps taken: {iteration}</p>
+      <p>Iterations taken: {iteration}</p>
     </div>
     <div className='control-panel'>
       <div className='control-buttons'>

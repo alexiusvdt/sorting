@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import './Bar.css';
+import '../App.css';
 
 function Bar({ index, length, color, changeArray }) {
 	const [len, setLen] = useState(length);
@@ -8,15 +8,12 @@ function Bar({ index, length, color, changeArray }) {
         setLen(length);
     }, [length]);
 
+	// move to .css
 	const colors = [
 		['rgba(61, 90, 241, 0.5)', 'rgba(61, 90, 241, 0.2)'],
 		['rgba(255, 48, 79, 1)', 'rgba(255, 48, 79, 0.5)'],
 		['rgba(131, 232, 90, 0.5)', 'rgba(131, 232, 90, 0.2)'],
 	];
-
-	// const barStyle = {
-	// 	height: length,
-	// };
 
 	const inputStyle = {
 		position: 'relative',
