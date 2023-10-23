@@ -19,6 +19,5 @@ types-requests==2.31.0.1
 types-urllib3==1.26.25.13
 urllib3==2.0.5
 userpath==1.8.0
-uWSGI==2.0.22
 Werkzeug==2.3.7
 yarg==0.1.9
