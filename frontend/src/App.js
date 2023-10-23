@@ -31,7 +31,7 @@ const App = () => {
     setLoading(true)
     axios({
       method: "GET",
-      url:"/sort",
+      url:"localhost:8080/sort",
       params: {
         "func": requestParams.selectedAlgo,
         size: requestParams.selectedSize

@@ -11,7 +11,7 @@ import sorts.selection
 import sorts.bogo
 import sorts.merge
 
-api = Flask(__name__)
+app = Flask(__name__)
 
 def make_list(size):
   '''creates a list of given size'''
@@ -20,11 +20,11 @@ def make_list(size):
     list.append(random.randint(10,200))
   return list
 
-@api.route('/')
+@app.route('/')
 def status_page():
   return render_template("index.html")
 
-@api.route('/sort')
+@app.route('/sort')
 def get_sort_obj():
   '''set up return object based on requested sort'''
   func = request.args.get('func')
@@ -76,4 +76,4 @@ def get_sort_obj():
       return output
   
 if __name__ == '__main__':
-  api.run(debug=False, host='0.0.0.0')
+  app.run(debug=False, host='0.0.0.0')
