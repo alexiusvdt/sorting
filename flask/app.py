@@ -1,5 +1,5 @@
-from flask import Flask, jsonify, request, render_template
-from flask import request
+from flask import Flask, jsonify, request, render_template, make_response
+from flask_cors import CORS
 import random
 import copy
 import sys
@@ -15,34 +15,18 @@ import sorts.merge
 app = Flask(__name__)
 CORS(app)
 
-def make_list(size):
-  '''creates a list of given size'''
-  list = []
-  for i in range(size):
-    list.append(random.randint(10,200))
-  return list
-
-@app.route('/')
-def index():
-   return render_template("index.html")
-
-@app.route('/sort')
-def get_sort_obj():
-  '''set up return object based on requested sort'''
-  func = request.args.get('func')
-  size = request.args.get('size')
-  size = int(size)
+def generate_sort(func, size):
+  """prepare & return a response"""
   list = make_list(size)
   output = {
         0 : copy.deepcopy(list)
       }
   
-  # this could probably be DRY-d out more
   if func == "bubble":
       bubble = sorts.bubble.BubbleSort(func, list)
       sorted = bubble.do_sort()
       output[1] = sorted
-
+          
       return output
   elif func == "insert":
       insert = sorts.insert.InsertSort(func, list)
@@ -77,6 +61,28 @@ def get_sort_obj():
       }
       return output
 
+def make_list(size):
+  '''creates a list of given size'''
+  list = []
+  for i in range(size):
+    list.append(random.randint(10,200))
+  return list
+
+@app.route('/')
+def index():
+   return render_template("index.html")
+
+@app.route('/sort')
+def get_sort_obj():
+  '''set up return object based on requested sort'''
+  func = request.args.get('func')
+  size = request.args.get('size')
+  size = int(size)
+  response = make_response(generate_sort(func, size))
+  response.headers['Access-Control-Allow_Origin'] = '*'
+
+  return response
+  
 
 if __name__ == "__main__":
-   app.run(host='0.0.0.0', port=5000)
+   app.run(host='0.0.0.0', port=8080)
