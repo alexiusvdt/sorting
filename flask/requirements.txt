@@ -6,6 +6,7 @@ click==8.1.5
 colorama==0.4.6
 docopt==0.6.2
 Flask==2.3.3
+Flask-Cors==4.0.0
 gunicorn==21.2.0
 idna==3.4
 itsdangerous==2.1.2
@@ -19,5 +20,6 @@ types-requests==2.31.0.1
 types-urllib3==1.26.25.13
 urllib3==2.0.5
 userpath==1.8.0
+uWSGI==2.0.22
 Werkzeug==2.3.7
 yarg==0.1.9

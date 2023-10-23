@@ -13,6 +13,7 @@ import sorts.bogo
 import sorts.merge
 
 app = Flask(__name__)
+CORS(app)
 
 def make_list(size):
   '''creates a list of given size'''

@@ -19,16 +19,8 @@ Sorting algorithms are used to put elements of a list into an order, either nume
 
 # Installation
 * clone this repository to your workspace
-* navigate to the `flask` directory in a command line interface
-* create the virtual environment(venv) by entering `python -m venv .venv`. 
-  * Note: `.venv` is the name for the resulting environment. You may name this however you wish, just replace `.venv` with your desired name in these commands.
-* activate the virtual environment:
-  * if on Windows:
-    * `.\.venv\Scripts\activate`
-  * if Mac/Linux (bash shell):
-    * `source .venv/bin/activate`
-* install necessary packages to the venv: `pip install -r requirements.txt`
-* run flask with `flask run` to start in dev mode
+* build the docker image with `docker build -t flask`
+* run the container `docker run -it --rm -p 8080:8080 flask`
 * in a second terminal window, navigate to `frontend` directory
 * run the react frontend with `npm run start`
 
