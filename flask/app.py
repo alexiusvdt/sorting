@@ -16,7 +16,7 @@ app = Flask(__name__)
 CORS(app)
 
 def generate_sort(func, size):
-  """prepare & return a response"""
+  """prepare & return a sort obj"""
   list = make_list(size)
   output = {
         0 : copy.deepcopy(list)
@@ -74,7 +74,7 @@ def index():
 
 @app.route('/sort')
 def get_sort_obj():
-  '''set up return object based on requested sort'''
+  '''create & return response'''
   func = request.args.get('func')
   size = request.args.get('size')
   size = int(size)
