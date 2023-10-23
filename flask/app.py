@@ -1,5 +1,4 @@
-from flask import Flask, jsonify
-from flask import request
+from flask import Flask, jsonify, request, render_template
 import random
 import copy
 import sys
@@ -20,6 +19,10 @@ def make_list(size):
   for i in range(size):
     list.append(random.randint(10,200))
   return list
+
+@api.route('/')
+def status_page():
+  return render_template("index.html")
 
 @api.route('/sort')
 def get_sort_obj():
@@ -71,3 +74,6 @@ def get_sort_obj():
         "you": " dun goofed up"
       }
       return output
+  
+if __name__ == '__main__':
+  api.run(debug=False, host='0.0.0.0')
